@@ -1,0 +1,113 @@
+* {}
+
+div, body {}
+
+#id {}
+
+.class {}
+
+a:link {}
+
+input:checked {}
+
+input:not(.class) {}
+
+input:nth-child(2) {}
+
+input::input-placeholder {}
+
+input::-webkit-input-placeholder {}
+
+a + p {}
+
+div > p {
+	display:block;
+	visibility:hidden;
+}
+
+div ~ p {}
+
+a[title] {}
+
+div[data-type="foo"] {}
+
+div[data-type=foo] {}
+
+div[data-type*=foo] {}
+
+div[data-type^=foo] {}
+
+div[data-type$=foo] {
+	background-image:url();
+}
+
+div[data-type~=foo] {
+	display:block;
+}
+
+@-webkit-keyframes example {
+	from {
+		background-color:red;
+	}
+	to {
+		background-color: yellow;
+	}
+}
+
+@keyframes example {
+	from {
+		background-color: rgba();
+	}
+	to {
+		background-color: yellow;
+	}
+}
+
+@font-face {
+	font-family: "Bitstream Vera Serif Bold";
+	src:url("https://mdn.mozillademos.org/files/2468/VeraSeBd.ttf");
+}
+
+@media tv and (min-width: 700px) and (orientation: landscape) {}
+
+@media (min-width: 700px), handheld and (orientation: landscape) {
+	body[durp] {
+		display:block;
+		top:2.2%;
+		left:20px;
+		font-size:0;
+		margin-left:-20px;
+		background-color:#ffffff !important;
+	}
+}
+
+@page {}
+@page :left {}
+@page :right {}
+@page LandscapeTable {}
+@page CompanyLetterHead:first {} /*  identifier and pseudo page. */
+@page:first {}
+@page toc, index {}
+@page :blank:first {}
+
+@page :first {
+	color: green;
+	size: 8.5in 11in;
+
+	@top-left {
+		content: "foo";
+		color:blue;
+		-webkit-background-color:test;
+		background:red;
+	}
+
+	@top-right {
+		content: "bar";
+	}
+}
+
+@page { color: red;
+	@top-center {
+		content: "Page " counter(page);
+	}
+}
