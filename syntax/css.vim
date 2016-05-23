@@ -1,3 +1,9 @@
+if !exists("main_syntax")
+  let main_syntax = 'css'
+elseif exists("b:current_syntax") && b:current_syntax == "css"
+  finish
+endif
+
 syntax sync fromstart
 
 syntax case ignore
@@ -100,3 +106,8 @@ highlight! default link cssHexColor             Number
 " highlight cssPseudoKeyword        guifg=#ff027f   guibg=#000000   gui=NONE
 " highlight cssFunctionDelimiters guifg=#cefdff   guibg=#000000   gui=NONE
 
+let b:current_syntax = "css"
+
+if main_syntax == 'css'
+  unlet main_syntax
+endif
