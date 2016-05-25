@@ -4,7 +4,7 @@ Add prop to the list, reverse sort
 
 Find/Replace Space/Or Regex:
 
-```js
+```
 s/\\|/\r/g
 s/ /\\|/g
 ```
@@ -102,6 +102,7 @@ infinite
 hidden
 help
 grid
+grayscale
 grabbing
 grab
 full-width
@@ -138,6 +139,7 @@ block
 block
 baseline
 auto
+antialiased
 all-scroll
 alias
 absolute
