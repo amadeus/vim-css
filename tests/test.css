@@ -38,11 +38,45 @@ div[data-type*=foo] {}
 div[data-type^=foo] {}
 
 div[data-type$=foo] {
-	background-image:url();
+	background-image:url(/static/durp.png);
 }
 
 div[data-type~=foo] {
 	display:block;
+}
+
+.font {
+	/* size | family */
+	font:2em "Open Sans", sans-serif;
+
+	/* style | size | family */
+	font:italic 2em "Open Sans", sans-serif;
+
+	/* style | variant | weight | size/line-height | family */
+	font:italic small-caps bolder 16px/3 cursive;
+
+	/* style | variant | weight | stretch | size/line-height | family */
+	font:italic small-caps bolder condensed 16px/3 cursive;
+
+	/* The font used in system dialogs */
+	font:message-box;
+	font:icon;
+
+	/* Global values */
+	font:inherit;
+	font:initial;
+	font:unset;
+	font-family:Proxima-Nova;
+}
+
+.transition {
+	transition-property: -webkit-opacity;
+	transition: all 1s ease-in-out;
+}
+
+.animation {
+	animation-name: slidein;
+	animation: 4s linear 0s infinite alternate move_eye;
 }
 
 @-webkit-keyframes example {
@@ -55,10 +89,10 @@ div[data-type~=foo] {
 }
 
 @keyframes example {
-	from {
+	0% {
 		background-color: rgba();
 	}
-	to {
+	100% {
 		background-color: yellow;
 	}
 }

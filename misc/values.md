@@ -36,11 +36,14 @@ table
 sw-resize
 super
 sub
+step-start
+step-end
 static
 start
 solid
 se-resize
 s-resize
+running
 run-in
 ruby-text-container
 ruby-text
@@ -49,6 +52,7 @@ ruby-base
 ruby
 row-resize
 right
+reverse
 repeat
 relative
 progress
@@ -57,6 +61,7 @@ pre-line
 pre
 pointer
 pixelated
+paused
 padding-box
 overflow-scrolling
 optimizeLegibility
@@ -67,7 +72,6 @@ nw-resize
 ns-resize
 nowrap
 not-allowed
-normal
 normal
 none
 none
@@ -106,6 +110,7 @@ grayscale
 grabbing
 grab
 full-width
+forwards
 flex
 end
 ellipsis
@@ -138,8 +143,11 @@ bold
 block
 block
 baseline
+backwards
 auto
 antialiased
+alternate-reverse
+alternate
 all-scroll
 alias
 absolute
