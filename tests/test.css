@@ -92,6 +92,7 @@ div[data-type~=foo] {
 	0% {
 		background-color: rgba();
 	}
+	68%, 72% { left: 50px; }
 	100% {
 		background-color: yellow;
 	}

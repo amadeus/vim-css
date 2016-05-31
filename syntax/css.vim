@@ -18,6 +18,7 @@ syntax match cssAtRule /@\(media\|page\|import\|charset\|namespace\)/ skipwhite 
 syntax region cssAtRuleString contained start=/"/ skip=/\\\\\|\\"/ end=/"/ contained skipwhite skipempty nextgroup=cssAtRuleNoise
 syntax region cssAtRuleString contained start=/'/ skip=/\\\\\|\\'/ end=/'/ contained skipwhite skipempty nextgroup=cssAtRuleNoise
 syntax match cssAtRuleNoise /;/ contained
+syntax match cssPagePseudos contained /:\%(left\|right\|blank\|first\|recto\|verso\)/
 
 syntax keyword cssTagSelector template a abbr acronym address area article aside audio b base bdo blockquote body br button canvas caption cite code col colgroup dd del details dfn div dl dt em embed fieldset figcaption figure footer form h1 h2 h3 h4 h5 h6 head header hgroup hr html i iframe img input ins isindex kbd label legend li link main map mark menu meta nav noscript object ol optgroup option p param pre progress q s samp script section select small span strong style sub summary sup svg table tbody td textarea tfoot th thead title tr u ul var video nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
@@ -41,7 +42,11 @@ syntax region cssAttributeSelector matchgroup=cssAttributeSelectorBraces start=/
 syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition keepend
 
 syntax match  cssKeyframesDefinition /@\%(-webkit-\|-moz-\|-ms-\|-o-\)\=keyframes \k\+/ contains=cssBrowserPrefix nextgroup=cssKeyframesBlock skipwhite skipempty
-syntax region cssKeyframesBlock contained matchgroup=cssAnimationBraces start=/{/ end=/}/ contains=cssDefinitionBlock extend
+syntax region cssKeyframesBlock contained matchgroup=cssAnimationBraces start=/{/ end=/}/ contains=cssKeyframe extend
+syntax keyword  cssKeyframe     contained from to skipwhite skipempty nextgroup=cssDefinitionBlock,cssKeyframeComma
+syntax match    cssKeyframe     contained /\d\+\%(\.\d*\)\=%/ skipwhite skipempty nextgroup=cssDefinitionBlock,cssKeyframeComma contains=cssNumber
+syntax match    cssKeyframeComma contained /,/ skipwhite skipempty nextgroup=cssKeyframe
+" syntax match cssNumber contained /[-+]\=\d\+\%(\.\d*\)\=/ nextgroup=cssUnits contains=cssNumberNoise
 
 syntax match  cssFontFaceDefinition /@font-face/ nextgroup=cssFontFaceBlock skipwhite skipempty
 syntax region cssFontFaceBlock contained matchgroup=cssFontFaceBraces start=/{/ end=/}/ extend contains=cssPropDefinition
@@ -50,6 +55,7 @@ syntax match  cssPropDefinition       contained /[a-zA-Z-]\+\%([ \r\t\n]*:\)\@=/
 syntax match  cssPropDefinition       contained /font\%(-family\)\=\%([ \r\t\n]*:\)\@=/ nextgroup=cssFontBlock skipwhite skipempty contains=cssProp,cssBrowserPrefix
 syntax match  cssPropDefinition       contained /transition\%(-property\)\=\%([ \r\t\n]*:\)\@=/ nextgroup=cssTransitionBlock skipwhite skipempty contains=cssProp,cssBrowserPrefix
 syntax match  cssPropDefinition       contained /animation\%(-name\)\=\%([ \r\t\n]*:\)\@=/ nextgroup=cssAnimationBlock skipwhite skipempty contains=cssProp,cssBrowserPrefix
+
 syntax region cssValueBlock           contained matchgroup=cssValueBlockDelimiters start=/:/ end=/;/ contains=@cssValues
 syntax region cssFontBlock            contained matchgroup=cssValueBlockDelimiters start=/:/ end=/;/ contains=@cssValues,cssString,cssValueNoise,cssFontOperator
 syntax match  cssFontOperator         contained /\//
@@ -62,7 +68,7 @@ syntax match cssValueKeyword contained /\<\%(zoom-out\|zoom-in\|wait\|w-resize\|
 syntax region cssMediaDefinition start=/@media/ end=/{\@=/ nextgroup=cssMediaBlock skipwhite skipempty contains=cssAtRule
 syntax region cssMediaBlock contained matchgroup=cssMediaBraces start=/{/ end=/}/ contains=@cssSelectors,cssPageDefinition
 
-syntax region cssPageDefinition start=/@page/ end=/{\@=/ skipwhite skipempty nextgroup=cssPageBlock contains=cssAtRule
+syntax region cssPageDefinition start=/@page/ end=/{\@=/ skipwhite skipempty nextgroup=cssPageBlock contains=cssAtRule,cssPagePseudos
 syntax region cssPageBlock contained matchgroup=cssPageBraces start=/{/ end=/}/ contains=cssPropDefinition,cssDefinitionBlock,cssAtRulePage
 syntax match  cssAtRulePage contained /@\k\+/
 
@@ -114,6 +120,7 @@ highlight! default link cssNumber                  Number
 highlight! default link cssHexColor                Number
 highlight! default link cssTagSelector             Statement
 highlight! default link cssPseudoKeyword           Special
+highlight! default link cssPagePseudos             Special
 highlight! default link cssValueKeyword            Constant
 highlight! default link cssColor                   Constant
 highlight! default link cssUnits                   Operator
@@ -129,7 +136,10 @@ highlight! default link cssFunctionDelimiters      Function
 highlight! default link cssFontBlock               Constant
 highlight! default link cssFontOperator            Operator
 highlight! default link cssValueNoise              Noise
+highlight! default link cssKeyframeComma           Noise
 highlight! default link cssAnimationBlock          Constant
+highlight! default link cssPageDefinition          Constant
+highlight! default link cssKeyframe                Constant
 
 let b:current_syntax = "css"
 
