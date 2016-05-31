@@ -9,7 +9,6 @@ s/\\|/\r/g
 s/ /\\|/g
 ```
 
-
 zoom-out
 zoom-in
 wait
@@ -32,16 +31,20 @@ table-column
 table-cell
 table-caption
 table
-table
 sw-resize
 super
 sub
 step-start
 step-end
+status-bar
 static
 start
 solid
+small-caption
+small-caps
+serif
 se-resize
+sans-serif
 s-resize
 running
 run-in
@@ -83,7 +86,10 @@ nearest-neighbor
 ne-resize
 n-resize
 move
+monospace
 middle
+message-box
+menu
 match-parent
 manipulation
 lowercase
@@ -103,6 +109,7 @@ inline
 initial
 inherit
 infinite
+icon
 hidden
 help
 grid
@@ -124,6 +131,7 @@ dashed
 crosshair
 crisp-edges
 cover
+courier
 context-menu
 contents
 content-box
@@ -133,6 +141,7 @@ col-resize
 clip
 center
 cell
+caption
 capitalize
 button
 bottom
@@ -151,3 +160,5 @@ alternate
 all-scroll
 alias
 absolute
+condensed
+cursive
