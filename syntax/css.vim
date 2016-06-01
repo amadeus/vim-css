@@ -56,7 +56,6 @@ syntax region cssKeyframesBlock contained matchgroup=cssAnimationBraces start=/{
 syntax keyword  cssKeyframe     contained from to skipwhite skipempty nextgroup=cssDefinitionBlock,cssKeyframeComma
 syntax match    cssKeyframe     contained /\d\+\%(\.\d*\)\=%/ skipwhite skipempty nextgroup=cssDefinitionBlock,cssKeyframeComma contains=cssNumber
 syntax match    cssKeyframeComma contained /,/ skipwhite skipempty nextgroup=cssKeyframe
-" syntax match cssNumber contained /[-+]\=\d\+\%(\.\d*\)\=/ nextgroup=cssUnits contains=cssNumberNoise
 
 syntax match  cssFontFaceDefinition /@font-face/ nextgroup=cssFontFaceBlock skipwhite skipempty
 syntax region cssFontFaceBlock contained matchgroup=cssFontFaceBraces start=/{/ end=/}/ extend contains=cssPropDefinition
@@ -102,13 +101,22 @@ syntax keyword cssColor contained aliceblue antiquewhite aqua aquamarine azure b
 
 syntax match cssUnits contained /\%(#\|%\|mm\|cm\|in\|pt\|pc\|em\|ex\|px\|rem\|dpi\|dppx\|dpcm\|vh\|vw\|vmin\|vmax\|deg\|grad\|rad\|ms\|s\|Hz\|kHz\)/
 
-syntax region cssFunction contained matchgroup=cssFunctionDelimiters start=/\k\+(/ end=/)/ keepend contains=cssString
+syntax region cssFunction        contained  start=/\k\+(/ end=/)/ keepend contains=cssFuncUrl,cssFuncAttr,cssFuncEffects,cssFuncCalc
+syntax region cssFuncUrl         contained matchgroup=cssFunctionDelimiters start=/url(/ end=/)/ contains=cssString
+syntax region cssFuncAttr        contained matchgroup=cssFunctionDelimiters start=/attr(/ end=/)/ contains=cssAttrProp
+syntax region cssFuncEffects     contained matchgroup=cssFunctionDelimiters start=/\%(url\|blur\|brightness\|contrast\|drop-shadow\|grayscale\|hue-rotate\|invert\|opacity\|saturate\|sepia\)(/ end=/)/ contains=cssNumber,cssColor
+syntax region cssFuncCalc        contained matchgroup=cssFunctionDelimiters start=/calc(/ end=/)/ contains=cssNumber,cssOperators
+
+syntax match  cssAttrProp     contained /\k\+/ skipwhite skipempty nextgroup=cssAttrTypes,cssAttrComma
+syntax match  cssAttrTypes    contained /\%(string\|integer\|color\|url\|integer\|number\|length\|angle\|time\|frequency\|em\|ex\|px\|rem\|vw\|vh\|vmin\|vmax\|mm\|cm\|in\|pt\|pc\|deg\|grad\|rad\|ms\|s\|Hz\|kHz\|%\)/ skipwhite skipempty nextgroup=cssAttrComma
+syntax match  cssAttrComma    contained /,/ skipwhite skipempty nextgroup=cssString,cssNumber
+syntax match  cssOperators    contained /\%(+\|-\|*\|\/\)/
 
 syntax cluster cssSelectors contains=cssTagSelector,cssIDSelector,cssSelectorOperator,cssSelectorSeparator,cssStarSelector,cssClassSelector,cssPseudoSelector,cssAttributeSelector,cssPseudoFunction
 syntax cluster cssRules contains=cssPropDefinition
 syntax cluster cssValues contains=cssFunction,cssString,cssNumber,cssHexColor,cssImportant,cssColor,cssValueKeyword,cssValueNoise
 
-syntax region cssComment start=/\/\*/ end=/\*\// containedin=ALL keepend extend
+syntax region cssComment start=/\/\*/ end=/\*\// containedin=ALLBUT,cssComment keepend extend
 
 highlight default link cssValueBlockDelimiters        Noise
 highlight default link cssDefinitionBraces            Noise
@@ -161,6 +169,11 @@ highlight default link cssPseudoDirKeywords           Constant
 highlight default link cssPseudoFunctionLang          Constant
 highlight default link cssPseudoFunctionTypeOperators Operator
 highlight default link cssPseudoFunctionTypeNumbers   Number
+highlight default link cssFuncUrl                    Special
+highlight default link cssAttrComma                   Noise
+highlight default link cssAttrTypes                   Operator
+highlight default link cssAttrProp                    Constant
+highlight default link cssOperators                   Operator
 
 let b:current_syntax = "css"
 

@@ -4,7 +4,21 @@ div, body {}
 
 #id {}
 
-.class {}
+.class {
+	/* Simple usage */
+	background:attr(data-count);
+	background-color:attr(title);
+
+	background:attr(src url);
+	background:attr(data-count number);
+	background:attr(data-width px);
+	background:attr(data-count number, 0);
+	background:attr(src url, '');
+	background:attr(data-width px, inherit);
+	background:attr(data-something, 'default');
+	filter: drop-shadow(16px 16px 10px black);
+	width: calc(100% / 80px);
+}
 
 a:link {}
 
