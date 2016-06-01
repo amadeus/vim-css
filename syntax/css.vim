@@ -104,7 +104,7 @@ syntax match cssUnits contained /\%(#\|%\|mm\|cm\|in\|pt\|pc\|em\|ex\|px\|rem\|d
 syntax region cssFunction        contained  start=/\k\+(/ end=/)/ keepend contains=cssFuncUrl,cssFuncAttr,cssFuncEffects,cssFuncCalc
 syntax region cssFuncUrl         contained matchgroup=cssFunctionDelimiters start=/url(/ end=/)/ contains=cssString
 syntax region cssFuncAttr        contained matchgroup=cssFunctionDelimiters start=/attr(/ end=/)/ contains=cssAttrProp
-syntax region cssFuncEffects     contained matchgroup=cssFunctionDelimiters start=/\%(url\|blur\|brightness\|contrast\|drop-shadow\|grayscale\|hue-rotate\|invert\|opacity\|saturate\|sepia\)(/ end=/)/ contains=cssNumber,cssColor
+syntax region cssFuncEffects     contained matchgroup=cssFunctionDelimiters start=/\%(blur\|brightness\|contrast\|drop-shadow\|grayscale\|hue-rotate\|invert\|opacity\|saturate\|sepia\)(/ end=/)/ contains=cssNumber,cssColor
 syntax region cssFuncCalc        contained matchgroup=cssFunctionDelimiters start=/calc(/ end=/)/ contains=cssNumber,cssOperators
 
 syntax match  cssAttrProp     contained /\k\+/ skipwhite skipempty nextgroup=cssAttrTypes,cssAttrComma
