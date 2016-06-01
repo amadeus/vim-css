@@ -12,11 +12,21 @@ input:checked {}
 
 input:not(.class) {}
 
-input:nth-child(2) {}
-
 input::input-placeholder {}
 
 input::-webkit-input-placeholder {}
+
+div:dir(ltr) { /* style properties */ }
+span:dir(rtl) { /* style properties */ }
+
+:lang(fr) > q { quotes: '\201C' '\201D' '\2018' '\2019'; }
+
+:nth-child(2n + 2),
+:nth-last-child(-n+3),
+:nth-last-of-type(),
+:nth-of-type(), {
+	/* durp */
+}
 
 a + p {}
 

@@ -33,7 +33,17 @@ syntax match cssClassSelectorDot /\./ contained
 
 syntax match cssPseudoSelector /:\{1,2\}/ nextgroup=cssPseudoKeyword,cssPseudoFunction
 syntax keyword cssPseudoKeyword contained active after before checked disabled empty first-child first-letter first-line first-of-type focus hover input-placeholder last-child last-line last-of-type left link only-child only-of-type placeholder right selection visited nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
-syntax region cssPseudoFunction contained matchgroup=cssFunctionDelimiters start=/\k\+(/ end=/)/ keepend nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
+
+syntax region cssPseudoFunction     contained start=/\k\+(/ end=/)/ keepend nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssPseudoFunctionNot,cssPseudoFunctionDir,cssPseudoFunctionLang,cssPseudoFunctionType
+syntax region cssPseudoFunctionNot  contained matchgroup=cssFunctionDelimiters start=/not(/ end=/)/ contains=@cssSelectors
+syntax region cssPseudoFunctionDir  contained matchgroup=cssFunctionDelimiters start=/dir(/ end=/)/ contains=cssPseudoDirKeywords
+syntax region cssPseudoFunctionLang contained matchgroup=cssFunctionDelimiters start=/lang(/ end=/)/
+syntax region cssPseudoFunctionType contained matchgroup=cssFunctionDelimiters start=/nth-\%(child\|last-child\|last-of-type\|of-type\)(/ end=/)/ contains=cssPseudoFunctionTypeNumbers,cssPseudoFunctionTypeOperators
+
+syntax keyword cssPseudoDirKeywords           contained ltr rtl auto
+syntax keyword cssPseudoFunctionTypeNumbers   contained odd even
+syntax match   cssPseudoFunctionTypeNumbers   contained /\d/
+syntax match   cssPseudoFunctionTypeOperators contained /\%(+\|-\|n\)/
 
 syntax match cssPseudoKeyword contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)\%(input-placeholder\|search-cancel-button\|search-decoration\|focus-inner\|placeholder\|inner-spin-button\|outer-spin-button\|expand\)/ contains=cssBrowserPrefix nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
@@ -100,53 +110,57 @@ syntax cluster cssValues contains=cssFunction,cssString,cssNumber,cssHexColor,cs
 
 syntax region cssComment start=/\/\*/ end=/\*\// containedin=ALL keepend extend
 
-highlight default link cssValueBlockDelimiters    Noise
-highlight default link cssDefinitionBraces        Noise
-highlight default link cssAnimationBraces         Noise
-highlight default link cssFontFaceBraces          Noise
-highlight default link cssMediaBraces             Noise
-highlight default link cssSelectorSeparator       Noise
-highlight default link cssAttributeSelectorBraces Noise
-highlight default link cssAttributeSelector       String
-highlight default link cssString                  String
-highlight default link cssAtRuleString            String
-highlight default link cssTagSelector             Statement
-highlight default link cssPseudoSelector          Noise
-highlight default link cssPageBraces              Noise
-highlight default link cssComment                 Comment
-highlight default link cssAtRuleNoise             Noise
-highlight default link cssAtRulePage              PreProc
-highlight default link cssKeyframesDefinition     PreProc
-highlight default link cssFontFaceDefinition      PreProc
-highlight default link cssAtRule                  PreProc
-highlight default link cssBrowserPrefix           Comment
-highlight default link cssNumber                  Number
-highlight default link cssHexColor                Number
-highlight default link cssTagSelector             Statement
-highlight default link cssPseudoKeyword           Special
-highlight default link cssPagePseudos             Special
-highlight default link cssValueKeyword            Constant
-highlight default link cssColor                   Constant
-highlight default link cssUnits                   Operator
-highlight default link cssNumberNoise             Number
-highlight default link cssAttributeSelectorBraces Special
-highlight default link cssClassSelector           Function
-highlight default link cssClassSelectorDot        Function
-highlight default link cssIDSelector              Function
-highlight default link cssIDSelectorHash          Function
-highlight default link cssImportant               Special
-highlight default link cssSelectorOperator        Operator
-highlight default link cssFunctionDelimiters      Function
-highlight default link cssFontBlock               Constant
-highlight default link cssFontOperator            Operator
-highlight default link cssValueNoise              Noise
-highlight default link cssKeyframeComma           Noise
-highlight default link cssAnimationBlock          Constant
-highlight default link cssPageDefinition          Constant
-highlight default link cssKeyframe                Constant
-highlight default link cssMediaDefinition         Constant
-highlight default link cssMediaNoise              Noise
-highlight default link cssMediaFeatures           Special
+highlight default link cssValueBlockDelimiters        Noise
+highlight default link cssDefinitionBraces            Noise
+highlight default link cssAnimationBraces             Noise
+highlight default link cssFontFaceBraces              Noise
+highlight default link cssMediaBraces                 Noise
+highlight default link cssSelectorSeparator           Noise
+highlight default link cssAttributeSelectorBraces     Noise
+highlight default link cssAttributeSelector           String
+highlight default link cssString                      String
+highlight default link cssAtRuleString                String
+highlight default link cssTagSelector                 Statement
+highlight default link cssPseudoSelector              Noise
+highlight default link cssPageBraces                  Noise
+highlight default link cssComment                     Comment
+highlight default link cssAtRuleNoise                 Noise
+highlight default link cssAtRulePage                  PreProc
+highlight default link cssKeyframesDefinition         PreProc
+highlight default link cssFontFaceDefinition          PreProc
+highlight default link cssAtRule                      PreProc
+highlight default link cssBrowserPrefix               Comment
+highlight default link cssNumber                      Number
+highlight default link cssHexColor                    Number
+highlight default link cssTagSelector                 Statement
+highlight default link cssPseudoKeyword               Special
+highlight default link cssPagePseudos                 Special
+highlight default link cssValueKeyword                Constant
+highlight default link cssColor                       Constant
+highlight default link cssUnits                       Operator
+highlight default link cssNumberNoise                 Number
+highlight default link cssAttributeSelectorBraces     Special
+highlight default link cssClassSelector               Function
+highlight default link cssClassSelectorDot            Function
+highlight default link cssIDSelector                  Function
+highlight default link cssIDSelectorHash              Function
+highlight default link cssImportant                   Special
+highlight default link cssSelectorOperator            Operator
+highlight default link cssFunctionDelimiters          Function
+highlight default link cssFontBlock                   Constant
+highlight default link cssFontOperator                Operator
+highlight default link cssValueNoise                  Noise
+highlight default link cssKeyframeComma               Noise
+highlight default link cssAnimationBlock              Constant
+highlight default link cssPageDefinition              Constant
+highlight default link cssKeyframe                    Constant
+highlight default link cssMediaDefinition             Constant
+highlight default link cssMediaNoise                  Noise
+highlight default link cssMediaFeatures               Special
+highlight default link cssPseudoDirKeywords           Constant
+highlight default link cssPseudoFunctionLang          Constant
+highlight default link cssPseudoFunctionTypeOperators Operator
+highlight default link cssPseudoFunctionTypeNumbers   Number
 
 let b:current_syntax = "css"
 
