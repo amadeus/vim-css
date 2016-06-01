@@ -169,7 +169,7 @@ highlight default link cssPseudoDirKeywords           Constant
 highlight default link cssPseudoFunctionLang          Constant
 highlight default link cssPseudoFunctionTypeOperators Operator
 highlight default link cssPseudoFunctionTypeNumbers   Number
-highlight default link cssFuncUrl                    Special
+highlight default link cssFuncUrl                     Special
 highlight default link cssAttrComma                   Noise
 highlight default link cssAttrTypes                   Operator
 highlight default link cssAttrProp                    Constant
