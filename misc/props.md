@@ -151,6 +151,7 @@ polar-origin
 polar-distance
 polar-angle
 polar-anchor
+pointer-events
 play-during
 pitch-range
 pitch

@@ -47,6 +47,7 @@ small-caption
 small-caps
 serif
 se-resize
+scroll
 sans-serif
 s-resize
 running
@@ -143,6 +144,7 @@ contents
 content-box
 contain
 condensed
+column
 collapse
 col-resize
 clip
