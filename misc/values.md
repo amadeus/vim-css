@@ -34,11 +34,14 @@ table
 sw-resize
 super
 sub
+stretch
 step-start
 step-end
 status-bar
 static
 start
+space-between
+space-around
 solid
 small-caption
 small-caps
@@ -118,6 +121,8 @@ grabbing
 grab
 full-width
 forwards
+flex-start
+flex-end
 flex
 end
 ellipsis
@@ -128,6 +133,7 @@ e-resize
 dotted
 default
 dashed
+cursive
 crosshair
 crisp-edges
 cover
@@ -136,6 +142,7 @@ context-menu
 contents
 content-box
 contain
+condensed
 collapse
 col-resize
 clip
@@ -160,5 +167,3 @@ alternate
 all-scroll
 alias
 absolute
-condensed
-cursive
