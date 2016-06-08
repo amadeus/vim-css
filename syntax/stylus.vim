@@ -3,7 +3,7 @@ runtime! syntax/css.vim
 unlet b:embedded_rules
 
 syntax match  stylusAmpersand containedin=cssDefinitionBlock /&/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
-syntax match  stylusComment "//.*" contains=@Spell
+syntax match  stylusComment "//.*" contains=@Spell containedin=cssDefinitionBlock
 
 syntax match  stylusVariable           /\k\+\s*\%(=\)\@=/ skipwhite skipempty nextgroup=stylusValue
 syntax region stylusValue    contained matchgroup=cssValueBlockDelimiters start=/=/ end=/\%(;\|$\)/ contains=@cssValues
