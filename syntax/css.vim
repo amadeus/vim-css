@@ -52,19 +52,19 @@ syntax match cssPseudoKeyword contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)\%(input
 syntax region cssAttributeSelector matchgroup=cssAttributeSelectorBraces start=/\[/ end=/\]/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
 if exists('b:embedded_rules')
-  syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition,@cssSelectors keepend
+  syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition,@cssSelectors keepend fold
 else
-  syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition keepend
+  syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition keepend fold
 endif
 
 syntax match  cssKeyframesDefinition /@\%(-webkit-\|-moz-\|-ms-\|-o-\)\=keyframes \k\+/ contains=cssBrowserPrefix nextgroup=cssKeyframesBlock skipwhite skipempty
-syntax region cssKeyframesBlock contained matchgroup=cssAnimationBraces start=/{/ end=/}/ contains=cssKeyframe extend
+syntax region cssKeyframesBlock contained matchgroup=cssAnimationBraces start=/{/ end=/}/ contains=cssKeyframe extend fold
 syntax keyword  cssKeyframe     contained from to skipwhite skipempty nextgroup=cssDefinitionBlock,cssKeyframeComma
 syntax match    cssKeyframe     contained /\d\+\%(\.\d*\)\=%/ skipwhite skipempty nextgroup=cssDefinitionBlock,cssKeyframeComma contains=cssNumber
 syntax match    cssKeyframeComma contained /,/ skipwhite skipempty nextgroup=cssKeyframe
 
 syntax match  cssFontFaceDefinition /@font-face/ nextgroup=cssFontFaceBlock skipwhite skipempty
-syntax region cssFontFaceBlock contained matchgroup=cssFontFaceBraces start=/{/ end=/}/ extend contains=cssPropDefinition
+syntax region cssFontFaceBlock contained matchgroup=cssFontFaceBraces start=/{/ end=/}/ extend contains=cssPropDefinition fold
 
 syntax match  cssPropDefinition       contained /[a-zA-Z-]\+\%([ \r\t\n]*:\)\@=/ nextgroup=cssValueBlock skipwhite skipempty contains=cssProp,cssBrowserPrefix
 syntax match  cssPropDefinition       contained /font\%(-family\)\=\%([ \r\t\n]*:\)\@=/ nextgroup=cssFontBlock skipwhite skipempty contains=cssProp,cssBrowserPrefix
@@ -81,14 +81,14 @@ syntax match cssProp contained /\%(zoom\|z-index\|writing-mode\|wrap-through\|wr
 syntax match cssValueKeyword contained /\<\%(zoom-out\|zoom-in\|wait\|w-resize\|visible\|vertical-text\|uppercase\|unset\|underline\|transparent\|top\|textfield\|text-top\|text-bottom\|text\|table-row-group\|table-row\|table-header-group\|table-column\|table-cell\|table-caption\|table\|sw-resize\|super\|sub\|stretch\|step-start\|step-end\|status-bar\|static\|start\|space-between\|space-around\|solid\|small-caption\|small-caps\|serif\|se-resize\|scroll\|sans-serif\|s-resize\|running\|run-in\|ruby-text-container\|ruby-text\|ruby-base-container\|ruby-base\|ruby\|row-resize\|right\|reverse\|repeat\|relative\|progress\|pre-wrap\|pre-line\|pre\|pointer\|pixelated\|paused\|padding-box\|overflow-scrolling\|optimizeLegibility\|optimize-contrast\|oblique\|nwse-resize\|nw-resize\|ns-resize\|nowrap\|not-allowed\|normal\|none\|none\|no-repeat\|no-drop\|no-allowed\|nesw-resize\|nearest-neighbor\|ne-resize\|n-resize\|move\|monospace\|middle\|message-box\|menu\|match-parent\|manipulation\|lowercase\|list-item\|linear\|left\|justify-all\|justify\|italic\|inset\|inline-table\|inline-list-item\|inline-grid\|inline-flex\|inline-block\|inline\|initial\|inherit\|infinite\|icon\|hidden\|help\|grid\|grayscale\|grabbing\|grab\|full-width\|forwards\|flex-start\|flex-end\|flex\|end\|ellipsis\|ease-out\|ease-in-out\|ease-in\|e-resize\|dotted\|default\|dashed\|cursive\|crosshair\|crisp-edges\|cover\|courier\|context-menu\|contents\|content-box\|contain\|condensed\|column\|collapse\|col-resize\|clip\|center\|cell\|caption\|capitalize\|button\|bottom\|both\|border-box\|bolder\|bold\|block\|block\|baseline\|backwards\|auto\|antialiased\|alternate-reverse\|alternate\|all-scroll\|alias\|absolute\)\>/
 
 syntax region  cssMediaDefinition start=/@media/ end=/{\@=/ nextgroup=cssMediaBlock skipwhite skipempty contains=cssAtRule,cssNumber,cssMediaNoise,cssMediaFeatures
-syntax region  cssMediaBlock contained matchgroup=cssMediaBraces start=/{/ end=/}/ contains=@cssSelectors,cssPageDefinition
+syntax region  cssMediaBlock contained matchgroup=cssMediaBraces start=/{/ end=/}/ contains=@cssSelectors,cssPageDefinition fold
 syntax match   cssMediaNoise contained /\%(:\|(\|)\|,\)/
 syntax keyword cssMediaFeatures contained width update-frequency transition transform-3d transform-2d scripting scan scan resolution pointer overflow-inline overflow-block orientation monochrome min-width min-resolution min-monochrome min-height min-device-width min-device-height min-device-aspect-ratio min-color-index min-color min-aspect-ratio max-width max-resolution max-monochrome max-height max-device-width max-device-height max-device-aspect-ratio max-color-index max-color max-aspect-ratio light-level inverted-colors hover height grid display-mode device-width device-pixel-ratio device-height device-aspect-ratio color-index color aspect-ratio any-pointer any-hover animation
 
 syntax keyword cssMediaTypes contained all print screen speech
 
 syntax region cssPageDefinition start=/@page/ end=/{\@=/ skipwhite skipempty nextgroup=cssPageBlock contains=cssAtRule,cssPagePseudos
-syntax region cssPageBlock contained matchgroup=cssPageBraces start=/{/ end=/}/ contains=cssPropDefinition,cssDefinitionBlock,cssAtRulePage
+syntax region cssPageBlock contained matchgroup=cssPageBraces start=/{/ end=/}/ contains=cssPropDefinition,cssDefinitionBlock,cssAtRulePage fold
 syntax match  cssAtRulePage contained /@\k\+/
 
 syntax region cssString contained start=/"/ skip=/\\\\\|\\"/ end=/"/
