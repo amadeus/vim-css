@@ -6,6 +6,9 @@ endif
 
 syntax clear
 
+let s:cpo_save = &cpo
+set cpo&vim
+
 syntax sync fromstart
 
 syntax case ignore
@@ -186,3 +189,6 @@ let b:current_syntax = "css"
 if main_syntax == 'css'
   unlet main_syntax
 endif
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
