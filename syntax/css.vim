@@ -99,8 +99,8 @@ syntax region cssString contained start=/'/ skip=/\\\\\|\\'/ end=/'/
 
 syntax match cssImportant /!important/ contained
 
-syntax match cssNumber contained /[-+]\=\.\%(\d*\)\=/ nextgroup=cssUnits contains=cssNumberNoise
-syntax match cssNumber contained /[-+]\=\d\+\%(\.\d*\)\=/ nextgroup=cssUnits contains=cssNumberNoise
+syntax match cssNumber contained /\k\@<![-+]\=\.\%(\d*\)\=/ nextgroup=cssUnits contains=cssNumberNoise
+syntax match cssNumber contained /\k\@<![-+]\=\d\+\%(\.\d*\)\=/ nextgroup=cssUnits contains=cssNumberNoise
 syntax match cssNumberNoise contained /\%(-\|+\|\.\)/
 
 syntax match cssHexColor contained "#[0-9A-Fa-f]\{3\}\>" contains=cssUnits
