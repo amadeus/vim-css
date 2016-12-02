@@ -1,29 +1,42 @@
 # Vim CSS
 
 The intention of this plugin is create an accurate, modular and easily
-extendable CSS syntax foundation.  Currently this library support basic **CSS**,
-**Stylus** and **Sass**. Other languages should be fairly trivial to add, so
-feel free to open up an issue so I can look into it.
+extendable CSS syntax foundation.  The currently supported languages are:
 
-I have opted to NOT attempt support for CSS style syntax that is whitespace
-dependent.  Learn to love those curly brackets!
+* CSS
+* Stylus
+* Sass
 
-Things to do
+This initial release is most likely far from feature complete, so please post
+issues if you find something I have missed.  Other pre-processors should be
+fairly trivial to add, so feel free to open up an issue so I can look into it.
+
+I have opted to NOT support pre-processor syntax that is white space dependent.
+Learn to love those curly brackets!
+
+
+## To Do List:
 
 * Add specialized animation and transform support
-* Improve function arguments handling
+* Improve CSS function arguments handling
+* Other languages?!
 
-## Why create yet another CSS syntax file for vim?
 
-I am pretty particular about how my development environment is setup, and I got
-tired of having to jump around to various derivative CSS languages and always
-having to install a new plugin or get inconsistent support/highlighting.  Most
-existing syntax files out there build off the baked in css syntax file which is
-a pretty garbage foundation.  I decided to do something about it.  This is a
-syntax file written entirely from scratch in a way to enable easy customization
-for derivative CSS languages.  I've also made a good attempt to support every
-property and value.  However, there's still a chance I've forgotten some, so
-please open up an issue if you find a CSS feature not supported!
+## Why create yet another CSS syntax file for Vim?
+
+CSS and its various pre-processing languages tend to be pretty poorly supported
+in Vim.  Many of the existing plugins build off the included syntax file which
+is a fairly disorganized mess that is both monolithic and a poor foundation for
+extending upon.  Meanwhile, I've spent the last few years contributing to one
+of the most widely used Javascript syntax files for Vim
+[pangloss/vim-javascript](https://github.com/pangloss/vim-javascript) and have
+gained quite a bit of experience in Vim's syntax matching APIs.  Taking what
+I've learned, I've created this CSS plugin from scratch in a way that is both
+highly accurate and extendable.
+
+Currently I only have support for CSS and two other pre-processors, but the
+foundation is in place to quickly and easily add more, as people request them.
+
 
 ## License
 
