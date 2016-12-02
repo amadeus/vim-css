@@ -1,6 +1,6 @@
 # CSS Props DB
 
-Add prop to the list, reverse sort
+Add prop to the list, reverse sort `:sort!`
 
 Find/Replace Space/Or Regex:
 
@@ -332,6 +332,7 @@ elevation
 dominant-baseline
 display
 direction
+d
 cursor
 cue-before
 cue-after
