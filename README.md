@@ -18,7 +18,6 @@ Learn to love those curly brackets!
 ## To Do List:
 
 * Add specialized animation and transform support
-* Improve CSS function arguments handling
 * Other languages?!
 
 

@@ -115,7 +115,7 @@ syntax keyword cssColor contained aliceblue antiquewhite aqua aquamarine azure b
 
 syntax match cssUnits contained /\%(#\|%\|mm\|cm\|in\|pt\|pc\|em\|ex\|px\|rem\|dpi\|dppx\|dpcm\|vh\|vw\|vmin\|vmax\|deg\|grad\|rad\|ms\|s\|Hz\|kHz\)/
 
-syntax region cssFunction        contained  start=/\k\+(/ end=/)/ keepend contains=cssFuncUrl,cssFuncAttr,cssFuncEffects,cssFuncCalc
+syntax region cssFunction        contained  start=/\k\+(/ end=/)/ keepend contains=cssFuncUrl,cssFuncAttr,cssFuncEffects,cssFuncCalc,cssNumber,cssString
 syntax region cssFuncUrl         contained matchgroup=cssFunctionDelimiters start=/url(/ end=/)/ contains=cssString
 syntax region cssFuncAttr        contained matchgroup=cssFunctionDelimiters start=/attr(/ end=/)/ contains=cssAttrProp
 syntax region cssFuncEffects     contained matchgroup=cssFunctionDelimiters start=/\%(blur\|brightness\|contrast\|drop-shadow\|grayscale\|hue-rotate\|invert\|opacity\|saturate\|sepia\)(/ end=/)/ contains=cssNumber,cssColor
