@@ -7,6 +7,8 @@ let b:embedded_rules = 1
 runtime! syntax/css.vim
 unlet b:embedded_rules
 
+setlocal iskeyword+=$
+
 syntax match  stylusAmpersand containedin=cssDefinitionBlock /&/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 syntax match  stylusComment "//.*" contains=@Spell containedin=cssDefinitionBlock
 
