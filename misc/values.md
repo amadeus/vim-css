@@ -11,6 +11,7 @@ s/ /\\|/g
 
 zoom-out
 zoom-in
+wrap
 wait
 w-resize
 visible
