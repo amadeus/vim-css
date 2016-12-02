@@ -118,7 +118,7 @@ syntax match cssUnits contained /\%(#\|%\|mm\|cm\|in\|pt\|pc\|em\|ex\|px\|rem\|d
 
 syntax region cssFunction        contained  start=/\k\+(/ end=/)/ keepend contains=cssFuncName
 syntax match cssFuncName         contained  /\<\k\+\>(\@=/ nextgroup=cssFuncArgs,cssFuncUrlArgs,cssFuncAttrArgs,cssFuncEffectArgs,cssFuncCalcArgs
-syntax region cssFuncArgs        contained matchgroup=cssFuncDelimiters start=/(/ end=/)/ contains=cssString,cssNumber,cssColor,cssOperators
+syntax region cssFuncArgs        contained matchgroup=cssFuncDelimiters start=/(/ end=/)/ contains=cssString,cssNumber,cssColor,cssOperators,cssValueNoise
 syntax region cssFuncUrlArgs     contained matchgroup=cssFuncDelimiters start=/\%(url\)\@<=(/ end=/)/ contains=cssString
 syntax region cssFuncAttrArgs    contained matchgroup=cssFuncDelimiters start=/\%(attr\)\@<=(/ end=/)/ contains=cssAttrProp
 syntax region cssFuncEffectArgs  contained matchgroup=cssFuncDelimiters start=/\%(blur\|brightness\|contrast\|drop-shadow\|grayscale\|hue-rotate\|invert\|opacity\|saturate\|sepia\)\@<=(/ end=/)/ contains=cssNumber,cssColor
