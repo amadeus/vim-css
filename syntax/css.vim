@@ -21,6 +21,7 @@ syntax case ignore
 setlocal iskeyword+=-
 setlocal iskeyword+=_
 
+syntax match cssBracketError /}\|)\|]/ containedin=ALL
 syntax match cssBrowserPrefix contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)/ nextgroup=cssProp
 syntax match cssValueNoise contained /,/
 
@@ -188,6 +189,7 @@ highlight default link cssAttrComma                   Noise
 highlight default link cssAttrTypes                   Operator
 highlight default link cssAttrProp                    Constant
 highlight default link cssOperators                   Operator
+highlight default link cssBracketError                Error
 
 let b:current_syntax = "css"
 
