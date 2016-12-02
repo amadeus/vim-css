@@ -1,3 +1,8 @@
+" Vim syntax file
+" Language:     CSS
+" Maintainer:   Amadeus Demarzi, http://github.com/amadeus
+" URL:          https://github.com/amadeus/vim-css
+
 if !exists("main_syntax")
   let main_syntax = 'css'
 elseif exists("b:current_syntax") && b:current_syntax == "css"

@@ -1,3 +1,8 @@
+" Vim syntax file
+" Language:     Stylus
+" Maintainer:   Amadeus Demarzi, http://github.com/amadeus
+" URL:          https://github.com/amadeus/vim-css
+
 let b:embedded_rules = 1
 runtime! syntax/css.vim
 unlet b:embedded_rules

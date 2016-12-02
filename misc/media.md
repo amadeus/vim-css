@@ -1,10 +1,10 @@
-# CSS Media Features
+# CSS Media Features List
 
-Add prop to the list, reverse sort
+Add prop to the list, reverse sort `:sort!`
 
 Find/Replace Space/Or Regex:
 
-```js
+```
 s/\\|/\r/g
 s/ /\\|/g
 ```

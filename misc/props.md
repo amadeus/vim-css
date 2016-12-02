@@ -1,10 +1,10 @@
-# CSS Props DB
+# CSS Props List
 
 Add prop to the list, reverse sort `:sort!`
 
 Find/Replace Space/Or Regex:
 
-```js
+```
 s/\\|/\r/g
 s/ /\\|/g
 ```

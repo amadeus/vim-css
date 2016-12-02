@@ -1,6 +1,6 @@
-# CSS Values DB
+# CSS Values List
 
-Add prop to the list, reverse sort
+Add prop to the list, reverse sort `:sort!`
 
 Find/Replace Space/Or Regex:
 
