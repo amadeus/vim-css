@@ -116,11 +116,13 @@ syntax keyword cssColor contained aliceblue antiquewhite aqua aquamarine azure b
 
 syntax match cssUnits contained /\%(#\|%\|mm\|cm\|in\|pt\|pc\|em\|ex\|px\|rem\|dpi\|dppx\|dpcm\|vh\|vw\|vmin\|vmax\|deg\|grad\|rad\|ms\|s\|Hz\|kHz\)/
 
-syntax region cssFunction        contained  start=/\k\+(/ end=/)/ keepend contains=cssFuncUrl,cssFuncAttr,cssFuncEffects,cssFuncCalc,cssNumber,cssString
-syntax region cssFuncUrl         contained matchgroup=cssFunctionDelimiters start=/url(/ end=/)/ contains=cssString
-syntax region cssFuncAttr        contained matchgroup=cssFunctionDelimiters start=/attr(/ end=/)/ contains=cssAttrProp
-syntax region cssFuncEffects     contained matchgroup=cssFunctionDelimiters start=/\%(blur\|brightness\|contrast\|drop-shadow\|grayscale\|hue-rotate\|invert\|opacity\|saturate\|sepia\)(/ end=/)/ contains=cssNumber,cssColor
-syntax region cssFuncCalc        contained matchgroup=cssFunctionDelimiters start=/calc(/ end=/)/ contains=cssNumber,cssOperators
+syntax region cssFunction        contained  start=/\k\+(/ end=/)/ keepend contains=cssFuncName
+syntax match cssFuncName         contained  /\<\k\+\>(\@=/ nextgroup=cssFuncArgs,cssFuncUrlArgs,cssFuncAttrArgs,cssFuncEffectArgs,cssFuncCalcArgs
+syntax region cssFuncArgs        contained matchgroup=cssFuncDelimiters start=/(/ end=/)/ contains=cssString,cssNumber,cssColor,cssOperators
+syntax region cssFuncUrlArgs     contained matchgroup=cssFuncDelimiters start=/\%(url\)\@<=(/ end=/)/ contains=cssString
+syntax region cssFuncAttrArgs    contained matchgroup=cssFuncDelimiters start=/\%(attr\)\@<=(/ end=/)/ contains=cssAttrProp
+syntax region cssFuncEffectArgs  contained matchgroup=cssFuncDelimiters start=/\%(blur\|brightness\|contrast\|drop-shadow\|grayscale\|hue-rotate\|invert\|opacity\|saturate\|sepia\)\@<=(/ end=/)/ contains=cssNumber,cssColor
+syntax region cssFuncCalcArgs    contained matchgroup=cssFuncDelimiters start=/\%(calc\)\@<=(/ end=/)/ contains=cssNumber,cssOperators
 
 syntax match  cssAttrProp     contained /\k\+/ skipwhite skipempty nextgroup=cssAttrTypes,cssAttrComma
 syntax match  cssAttrTypes    contained /\%(string\|integer\|color\|url\|integer\|number\|length\|angle\|time\|frequency\|em\|ex\|px\|rem\|vw\|vh\|vmin\|vmax\|mm\|cm\|in\|pt\|pc\|deg\|grad\|rad\|ms\|s\|Hz\|kHz\|%\)/ skipwhite skipempty nextgroup=cssAttrComma
@@ -184,12 +186,14 @@ highlight default link cssPseudoDirKeywords           Constant
 highlight default link cssPseudoFunctionLang          Constant
 highlight default link cssPseudoFunctionTypeOperators Operator
 highlight default link cssPseudoFunctionTypeNumbers   Number
-highlight default link cssFuncUrl                     Special
+highlight default link cssFuncUrlArgs                 Special
 highlight default link cssAttrComma                   Noise
 highlight default link cssAttrTypes                   Operator
 highlight default link cssAttrProp                    Constant
 highlight default link cssOperators                   Operator
 highlight default link cssBracketError                Error
+highlight default link cssFuncName                    Function
+highlight default link cssFuncDelimiters              Operator
 
 let b:current_syntax = "css"
 
