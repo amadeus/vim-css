@@ -21,7 +21,7 @@ syntax case ignore
 setlocal iskeyword+=-
 setlocal iskeyword+=_
 
-syntax match cssBracketError /}\|)\|]/ containedin=ALL
+syntax match cssBracketError /}\|]/ containedin=ALL
 syntax match cssBrowserPrefix contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)/ nextgroup=cssProp
 syntax match cssValueNoise contained /,/
 
