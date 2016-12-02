@@ -1,8 +1,15 @@
 # CSS Values List
 
-Add prop to the list, reverse sort `:sort!`
+The intention of this file is to easily document changes to, and handle sorting
+of, the `cssValueKeyword` regex.
 
-Find/Replace Space/Or Regex:
+To add a new item to the `cssValueKeyword` regex, simply append it to this
+list, select the contents and execute a `:sort!` (reverse sort) on it.  Then
+re-select all the contents and press `J` (`shift+j`) to concatenate into a
+single line.  Then re-select the line and execute `s/ /\\|/g` over the
+selection.  This will inject the proper `\|` (`or`) operators.  Then copy and
+paste the line into `css.vim` and update the `cssValueKeyword` line, ensuring
+to properly close the regex.
 
 ```
 s/\\|/\r/g

@@ -1,13 +1,13 @@
 # CSS Media Features List
 
-Add prop to the list, reverse sort `:sort!`
+The intention of this file is to easily document changes to, and handle sorting
+of, `cssMediaFeature` keywords.
 
-Find/Replace Space/Or Regex:
-
-```
-s/\\|/\r/g
-s/ /\\|/g
-```
+To add a new keyword to the `cssMediaFeature` group, simply append it to this
+list, select the contents and execute a `:sort!` (reverse sort) on it.  Then
+re-select all the contents and press `J` (`shift+j`) to concatenate to a single
+line to be copied and pasted into the `css.vim` file to update the
+`cssMediaFeature` line.
 
 width
 update-frequency
