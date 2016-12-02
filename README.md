@@ -1,6 +1,6 @@
 # Vim CSS
 
-The intention of this plugin is create an accurat, modular and easily
+The intention of this plugin is create an accurate, modular and easily
 extendable CSS syntax foundation.  Currently this library support basic **CSS**,
 **Stylus** and **Sass**. Other languages should be fairly trivial to add, so
 feel free to open up an issue so I can look into it.
