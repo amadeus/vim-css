@@ -24,3 +24,7 @@ syntax file written entirely from scratch in a way to enable easy customization
 for derivative CSS languages.  I've also made a good attempt to support every
 property and value.  However, there's still a chance I've forgotten some, so
 please open up an issue if you find a CSS feature not supported!
+
+## License
+
+[MIT Style License](https://opensource.org/licenses/MIT)
