@@ -21,6 +21,10 @@ syntax case ignore
 setlocal iskeyword+=-
 setlocal iskeyword+=_
 
+" This is here simply to fix misc issues where external plugins attempt to
+" load this CSS plugin - I need to research more why the bug exists - perhaps
+" this is a better workaround
+syntax match cssAttr /\<cssAttrPolyfill\>/ contained
 syntax match cssBracketError /}\|]/ containedin=ALLBUT,cssComment
 syntax match cssBrowserPrefix contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)/ nextgroup=cssProp
 syntax match cssValueNoise contained /,/
