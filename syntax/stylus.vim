@@ -3,6 +3,9 @@
 " Maintainer:   Amadeus Demarzi, http://github.com/amadeus
 " URL:          https://github.com/amadeus/vim-css
 
+syntax clear
+syntax match  stylusVariable           /\<[_a-zA-Z$]\+[_a-zA-Z0-9-]*\>/ containedin=cssValueBlock,cssTransitionBlock
+
 let b:embedded_rules = 1
 runtime! syntax/css.vim
 unlet b:embedded_rules
@@ -12,11 +15,10 @@ setlocal iskeyword+=$
 syntax match  stylusAmpersand containedin=cssDefinitionBlock /&/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 syntax match  stylusComment "//.*" contains=@Spell containedin=cssDefinitionBlock
 
-syntax match  stylusVariable           /\k\+\s*\%(=\)\@=/ skipwhite skipempty nextgroup=stylusValue
+syntax match  stylusVariable           /[_a-zA-Z$]\+[_a-zA-Z0-9-]*\s*\%(=\)\@=/ skipwhite skipempty nextgroup=stylusValue
 syntax region stylusValue    contained matchgroup=cssValueBlockDelimiters start=/=/ end=/\%(;\|$\)/ contains=@cssValues
 
 highlight default link stylusAmpersand    Special
 highlight default link stylusComment      Comment
-highlight default link stylusVariable     Identifier
 
 let b:current_syntax = "stylus"
