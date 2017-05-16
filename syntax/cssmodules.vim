@@ -4,15 +4,36 @@
 " URL:          https://github.com/amadeus/vim-css
 
 syntax clear
-syntax match  stylusVariable           /\<[_a-zA-Z$]\+[_a-zA-Z0-9-]*\>/ containedin=cssValueBlock,cssTransitionBlock
+syntax match  cssmVariable           /\<[_a-zA-Z$]\+[_a-zA-Z0-9-]*\>/ containedin=cssValueBlock,cssTransitionBlock
 
 let b:embedded_rules = 1
 runtime! syntax/css.vim
 unlet b:embedded_rules
 
-setlocal iskeyword+=$
+syntax region cssmImport matchgroup=cssmImportKeywords start=/import/ end=/from/ contains=cssmClass skipwhite skipempty nextgroup=cssString
+syntax match cssmNoise /;/
 
-highlight default link stylusAmpersand    Special
-highlight default link stylusComment      Comment
+syntax match cssmComposes contained /composes/ skipwhite skipempty nextgroup=cssmComposesValue containedin=cssDefinitionBlock
+syntax region cssmComposesValue contained matchgroup=cssComposesValueDelims start=/:/ end=/;/ contains=cssmClass
+syntax match cssmComposesFrom /from/ contained skipwhite skipempty nextgroup=cssString
+
+syntax match cssmClass contained /\k\+/ skipwhite skipempty nextgroup=cssmComposesFrom
+
+syntax match cssmGlobal /:global/ skipwhite skipempty nextgroup=cssmGlobalArgs contains=cssmGlobalKeyword,cssmGlobalColon
+syntax region cssmGlobalArgs contained matchgroup=cssmGlobalParens start=/(/ end=/)/  contains=cssClassSelector skipwhite skipempty nextgroup=cssDefinitionBlock
+syntax match cssmGlobalKeyword contained /global/ contains=cssmGlobalColon
+syntax match cssmGlobalColon contained /:/
+
+highlight default link cssmImportKeywords Comment
+highlight default link cssmComposesFrom Comment
+highlight default link cssmClass cssClassSelector
+highlight default link cssmNoise Noise
+highlight default link cssmGlobalColon Noise
+highlight default link cssmGlobalParens Noise
+highlight default link cssComposesValueDelims Noise
+highlight default link cssmComposes cssProp
+highlight default link cssmGlobalKeyword cssProp
+
+setlocal iskeyword+=$
 
 let b:current_syntax = "css-modules"
