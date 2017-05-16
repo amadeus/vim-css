@@ -36,7 +36,7 @@ syntax region cssAtRuleString contained start=/'/ skip=/\\\\\|\\'/ end=/'/ conta
 syntax match cssAtRuleNoise /;/ contained
 syntax match cssPagePseudos contained /:\%(left\|right\|blank\|first\|recto\|verso\)/
 
-syntax keyword cssTagSelector a abbr acronym address area article aside audio b base bdo blockquote body br button canvas caption circle cite code col colgroup dd del details dfn div dl dt em embed fieldset figcaption figure footer form g h1 h2 h3 h4 h5 h6 head header hgroup hr html i iframe img input ins isindex kbd label legend li link main map mark menu meta nav noscript object ol optgroup option p param path pre progress q s samp script section select small span strong style sub summary sup svg table tbody td template textarea tfoot th thead title tr u ul var video nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
+syntax keyword cssTagSelector a abbr acronym address applet area article aside audio b base bdo big blockquote body br button canvas caption circle cite code col colgroup dd del details dfn div dl dt em embed fieldset figcaption figure footer form g h1 h2 h3 h4 h5 h6 head header hgroup hr html i iframe img input ins isindex kbd label legend li link main map mark menu meta nav noscript object ol optgroup option p param path pre progress q s samp script section select small span strike strong style sub summary sup svg table tbody td template textarea tfoot th thead title tr tt u ul var video nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
 syntax match cssTagSelector /\*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 syntax match cssSelectorSeparator contained /,/
