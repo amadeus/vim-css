@@ -13,6 +13,8 @@ unlet b:embedded_rules
 syntax region cssmImport matchgroup=cssmImportKeywords start=/import/ end=/from/ contains=cssmClass skipwhite skipempty nextgroup=cssString
 syntax match cssmNoise /;/
 
+syntax match  cssmAmpersand containedin=cssDefinitionBlock /&/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
+
 syntax match cssmComposes contained /composes/ skipwhite skipempty nextgroup=cssmComposesValue containedin=cssDefinitionBlock
 syntax region cssmComposesValue contained matchgroup=cssComposesValueDelims start=/:/ end=/;/ contains=cssmClass
 syntax match cssmComposesFrom /from/ contained skipwhite skipempty nextgroup=cssString
@@ -23,7 +25,10 @@ syntax match cssmGlobal /:global/ skipwhite skipempty nextgroup=cssmGlobalArgs c
 syntax region cssmGlobalArgs contained matchgroup=cssmGlobalParens start=/(/ end=/)/  contains=cssClassSelector skipwhite skipempty nextgroup=cssDefinitionBlock
 syntax match cssmGlobalKeyword contained /global/ contains=cssmGlobalColon
 syntax match cssmGlobalColon contained /:/
+syntax match  cssmComment "//.*" contains=@Spell containedin=cssDefinitionBlock
 
+highlight default link cssmAmpersand    Special
+highlight default link cssmComment Comment
 highlight default link cssmImportKeywords Comment
 highlight default link cssmComposesFrom Comment
 highlight default link cssmClass cssClassSelector
