@@ -3,6 +3,7 @@
 " Maintainer:   Amadeus Demarzi, http://github.com/amadeus
 " URL:          https://github.com/amadeus/vim-css
 
+echom "we up in here?"
 syntax clear
 syntax match  cssmVariable           /\<[_a-zA-Z$]\+[_a-zA-Z0-9-]*\>/ containedin=cssValueBlock,cssTransitionBlock
 
@@ -41,4 +42,4 @@ highlight default link cssmGlobalKeyword cssProp
 
 setlocal iskeyword+=$
 
-let b:current_syntax = "css-modules"
+let b:current_syntax = "css.module"

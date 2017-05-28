@@ -8,4 +8,4 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-autocmd BufNewFile,BufReadPost *.cssm set filetype=cssmodules
+autocmd BufNewFile,BufRead *.module.css,*.mod.css set filetype=css.module
