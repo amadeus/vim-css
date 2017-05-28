@@ -13,8 +13,8 @@ endif
 syn include syntax/css.vim
 
 syntax match jsStyledDefinition /styled\.\k\+/ contains=jsNoise nextgroup=jsStyledTemplate
-syntax region jsStyledTemplate matchgroup=jsStyledTemplateTicks start=/`/ end=/`/ contained contains=cssPropDefinition,styledPosition,jsTemplateExpression
-syntax region  jsTemplateExpression contained matchgroup=jsTemplateBraces start=+${+ end=+}+ contains=@jsExpression keepend containedin=cssValueBlock
+syntax region jsStyledTemplate matchgroup=jsStyledTemplateTicks start=/`/ skip=/\\\(`\|$\)/ end=/`/ contained contains=cssPropDefinition,styledPosition,jsTemplateExpression keepend
+syntax region  jsTemplateExpression contained matchgroup=jsTemplateBraces start=+${+ end=+}+ contains=@jsExpression keepend containedin=cssValueBlock keepend extend
 
 highlight default link jsStyledTemplateTicks String
 
