@@ -1,3 +1,4 @@
+echom "sourcing after"
 if exists("b:current_syntax")
   let s:current_syntax=b:current_syntax
   unlet b:current_syntax
@@ -16,7 +17,7 @@ unlet b:embedded_rules
 
 syntax match jsStyledKeyword /\<styled\>/ skipwhite skipempty nextgroup=jsStyledDot,jsStyledParens
 " NOTE: This specific re-drecinition of jsFuncCall is to overwrite the current one
-syntax match jsFuncCall /styled\%(\s*(\)\@=/ contained containedin=@jsExpression skipwhite skipempty nextgroup=jsStyledParens contains=jsStyledKeyword
+syntax match jsFuncCall /styled\%(\s*(\)\@=/ contained skipwhite skipempty nextgroup=jsStyledParens contains=jsStyledKeyword
 syntax match jsStyledDot /\./ contained skipwhite skipempty nextgroup=jsStyledTag,jsStyledMethods
 syntax match jsStyledTag /\k\+/ contained nextgroup=jsStyledTemplate,jsStyledDot contains=jsTaggedTemplate
 syntax keyword jsStyledMethods attrs withConfig contained skipwhite skipempty nextgroup=jsStyledParens
