@@ -3,7 +3,14 @@
 " Maintainer:   Amadeus Demarzi, http://github.com/amadeus
 " URL:          https://github.com/amadeus/vim-css
 
-echom "we up in here?"
+if !exists("main_syntax")
+  let main_syntax = "css.module"
+endif
+
+if exists("b:current_syntax") && b:current_syntax == "css.module"
+  finish
+endif
+
 syntax clear
 syntax match  cssmVariable           /\<[_a-zA-Z$]\+[_a-zA-Z0-9-]*\>/ containedin=cssValueBlock,cssTransitionBlock
 

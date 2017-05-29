@@ -4,8 +4,10 @@
 " URL:          https://github.com/amadeus/vim-css
 
 if !exists("main_syntax")
-  let main_syntax = 'css'
-elseif exists("b:current_syntax") && b:current_syntax == "scss"
+  let main_syntax = "scss"
+endif
+
+if exists("b:current_syntax") && b:current_syntax == "scss"
   finish
 endif
 

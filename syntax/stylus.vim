@@ -3,6 +3,14 @@
 " Maintainer:   Amadeus Demarzi, http://github.com/amadeus
 " URL:          https://github.com/amadeus/vim-css
 
+if !exists("main_syntax")
+  let main_syntax = "stylus"
+endif
+
+if exists("b:current_syntax") && b:current_syntax == "stylus"
+  finish
+endif
+
 syntax clear
 syntax match  stylusVariable           /\<[_a-zA-Z$]\+[_a-zA-Z0-9-]*\>/ containedin=cssValueBlock,cssTransitionBlock
 
