@@ -11,7 +11,7 @@ if exists("b:current_syntax") && b:current_syntax == "css"
   finish
 endif
 
-if !exists('b:embedded_rules')
+if !exists('b:embedded_rules') && main_syntax != 'css'
   syntax clear
 endif
 
