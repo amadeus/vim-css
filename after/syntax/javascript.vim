@@ -1,4 +1,3 @@
-echom "sourcing after"
 if exists("b:current_syntax")
   let s:current_syntax=b:current_syntax
   unlet b:current_syntax
