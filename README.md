@@ -4,8 +4,9 @@ The intention of this plugin is create an accurate, modular and easily
 extendable CSS syntax foundation.  The currently supported languages are:
 
 * CSS
-* Stylus
-* Sass
+* [Stylus](http://stylus-lang.com/)
+* [Sass](http://sass-lang.com/)
+* [Styled Components](https://www.styled-components.com/)
 
 This initial release is most likely far from feature complete, so please post
 issues if you find something I have missed.  Other pre-processors should be
