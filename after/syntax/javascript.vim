@@ -1,3 +1,7 @@
+if exists('main_syntax') && main_syntax != 'javascript'
+  finish
+endif
+
 if exists("b:current_syntax")
   let s:current_syntax=b:current_syntax
   unlet b:current_syntax
