@@ -10,13 +10,23 @@ if sc_import_line == 0 && sc_require_line == 0
   finish
 endif
 
-syn include syntax/css.vim
+syntax include syntax/css.vim
 
-syntax match jsStyledDefinition /styled\.\k\+/ contains=jsNoise nextgroup=jsStyledTemplate
+syntax match jsStyledKeyword /\<styled\>/ skipwhite skipempty nextgroup=jsStyledDot,jsStyledParens containedin=@jsExpression,jsFuncCall
+syntax match jsStyledDot /\./ contained skipwhite skipempty nextgroup=jsStyledTag,jsStyledAttrs
+syntax match jsStyledTag /\k\+/ contained nextgroup=jsStyledTemplate,jsStyledDot contains=jsTaggedTemplate
+syntax keyword jsStyledAttrs attrs contained skipwhite skipempty nextgroup=jsStyledParens
+syntax region jsStyledParens contained matchgroup=jsParens start=/(/ end=/)/  contains=@jsAll extend fold nextgroup=jsStyledTemplate,jsStyledDot
+
+" syntax match jsStyledDefinition /\<styled\>\.\k\+`\@=/ contains=jsNoise nextgroup=jsStyledTemplate
+syntax match jsStyledDefinition /\k\+.extend\>`\@=/ contains=jsNoise nextgroup=jsStyledTemplate
+syntax match jsStyledDefinition /\<css\>`\@=/ contains=jsTaggedTemplate nextgroup=jsStyledTemplate
+
 syntax region jsStyledTemplate matchgroup=jsStyledTemplateTicks start=/`/ skip=/\\\(`\|$\)/ end=/`/ contained contains=cssPropDefinition,styledPosition,jsTemplateExpression keepend
-syntax region  jsTemplateExpression contained matchgroup=jsTemplateBraces start=+${+ end=+}+ contains=@jsExpression keepend containedin=cssValueBlock keepend extend
+syntax region jsTemplateExpression contained matchgroup=jsTemplateBraces start=+${+ end=+}+ contains=@jsExpression keepend containedin=cssValueBlock keepend extend
 
 highlight default link jsStyledTemplateTicks String
+highlight default link jsStyledDot Noise
 
 if exists("s:current_syntax")
   let b:current_syntax=s:current_syntax
