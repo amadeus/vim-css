@@ -10,22 +10,26 @@ if sc_import_line == 0 && sc_require_line == 0
   finish
 endif
 
+let b:embedded_rules = 1
 syntax include syntax/css.vim
+unlet b:embedded_rules
 
 syntax match jsStyledKeyword /\<styled\>/ skipwhite skipempty nextgroup=jsStyledDot,jsStyledParens
 " NOTE: This specific re-drecinition of jsFuncCall is to overwrite the current one
 syntax match jsFuncCall /styled\%(\s*(\)\@=/ contained containedin=@jsExpression skipwhite skipempty nextgroup=jsStyledParens contains=jsStyledKeyword
-syntax match jsStyledDot /\./ contained skipwhite skipempty nextgroup=jsStyledTag,jsStyledAttrs
+syntax match jsStyledDot /\./ contained skipwhite skipempty nextgroup=jsStyledTag,jsStyledMethods
 syntax match jsStyledTag /\k\+/ contained nextgroup=jsStyledTemplate,jsStyledDot contains=jsTaggedTemplate
-syntax keyword jsStyledAttrs attrs contained skipwhite skipempty nextgroup=jsStyledParens
+syntax keyword jsStyledMethods attrs withConfig contained skipwhite skipempty nextgroup=jsStyledParens
 syntax region jsStyledParens contained matchgroup=jsParens start=/(/ end=/)/  contains=@jsAll extend fold nextgroup=jsStyledTemplate,jsStyledDot
+syntax match jsStyledAmpersand contained /&/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
 syntax match jsStyledDefinition /\k\+.extend\>`\@=/ contains=jsNoise nextgroup=jsStyledTemplate
 syntax match jsStyledDefinition /\<css\>`\@=/ contains=jsTaggedTemplate nextgroup=jsStyledTemplate
 
-syntax region jsStyledTemplate matchgroup=jsStyledTemplateTicks start=/`/ skip=/\\\(`\|$\)/ end=/`/ contained contains=cssPropDefinition,styledPosition,jsTemplateExpression keepend
+syntax region jsStyledTemplate matchgroup=jsStyledTemplateTicks start=/`/ skip=/\\\(`\|$\)/ end=/`/ contained keepend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition,jsTemplateExpression,jsStyledAmpersand
 syntax region jsTemplateExpression contained matchgroup=jsTemplateBraces start=+${+ end=+}+ contains=@jsExpression keepend containedin=cssValueBlock keepend extend
 
+highlight default link jsStyledAmpersand Special
 highlight default link jsStyledTemplateTicks String
 highlight default link jsStyledDot Noise
 
