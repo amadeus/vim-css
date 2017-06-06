@@ -29,7 +29,7 @@ syntax match cssmComposesFrom /from/ contained skipwhite skipempty nextgroup=css
 
 syntax match cssmClass contained /\k\+/ skipwhite skipempty nextgroup=cssmComposesFrom
 
-syntax match cssmGlobal /:global/ skipwhite skipempty nextgroup=cssmGlobalArgs contains=cssmGlobalKeyword,cssmGlobalColon
+syntax match cssmGlobal /:global/ skipwhite skipempty nextgroup=cssmGlobalArgs contains=cssmGlobalKeyword,cssmGlobalColon containedin=cssDefinitionBlock
 syntax region cssmGlobalArgs contained matchgroup=cssmGlobalParens start=/(/ end=/)/  contains=cssClassSelector skipwhite skipempty nextgroup=cssDefinitionBlock
 syntax match cssmGlobalKeyword contained /global/ contains=cssmGlobalColon
 syntax match cssmGlobalColon contained /:/
