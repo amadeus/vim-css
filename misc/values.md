@@ -162,6 +162,7 @@ cell
 caption
 capitalize
 button
+break-word
 bottom
 both
 border-box
