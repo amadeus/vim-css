@@ -63,7 +63,7 @@ syntax keyword cssPseudoFunctionTypeNumbers   contained odd even
 syntax match   cssPseudoFunctionTypeNumbers   contained /\d/
 syntax match   cssPseudoFunctionTypeOperators contained /\%(+\|-\|n\)/
 
-syntax match cssPseudoKeyword contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)\%(input-placeholder\|search-cancel-button\|search-decoration\|focus-inner\|placeholder\|inner-spin-button\|outer-spin-button\|expand\|scrollbar-track\|scrollbar-track-piece\|scrollbar-thumb\|scrollbar-corner\|scrollbar\)/ contains=cssBrowserPrefix nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
+syntax match cssPseudoKeyword contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)\%(input-placeholder\|search-cancel-button\|search-decoration\|focus-inner\|placeholder\|inner-spin-button\|outer-spin-button\|expand\|scrollbar-track\|scrollbar-track-piece\|scrollbar-thumb\|scrollbar-corner\|scrollbar\|full-screen\|media-controls-enclosure\)/ contains=cssBrowserPrefix nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
 syntax region cssAttributeSelector matchgroup=cssAttributeSelectorBraces start=/\[/ end=/\]/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
