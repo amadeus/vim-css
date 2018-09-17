@@ -56,6 +56,7 @@ small-caps
 serif
 se-resize
 scroll
+scale-down
 sans-serif
 s-resize
 running
@@ -89,7 +90,6 @@ ns-resize
 nowrap
 not-allowed
 normal
-none
 none
 no-repeat
 no-drop
@@ -134,6 +134,7 @@ forwards
 flex-start
 flex-end
 flex
+fill
 end
 ellipsis
 ease-out
