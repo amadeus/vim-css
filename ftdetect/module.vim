@@ -9,3 +9,5 @@ endif
 let b:did_ftplugin = 1
 
 autocmd BufNewFile,BufRead *.module.css,*.mod.css set filetype=css.module
+
+let b:undo_ftplugin = ""
