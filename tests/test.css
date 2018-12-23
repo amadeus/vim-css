@@ -38,7 +38,7 @@ span:dir(rtl) { /* style properties */ }
 :nth-child(2n + 2),
 :nth-last-child(-n+3),
 :nth-last-of-type(),
-:nth-of-type(), {
+:nth-of-type() {
 	/* durp */
 }
 

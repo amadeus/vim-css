@@ -33,8 +33,8 @@ syntax match cssBrowserPrefix contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)/ nextgr
 syntax match cssValueNoise contained /,/
 
 syntax match cssAtRule /@\(media\|page\|import\|charset\|namespace\)/ skipwhite skipempty nextgroup=cssAtRuleString
-syntax region cssAtRuleString contained start=/"/ skip=/\\\\\|\\"/ end=/"/ contained skipwhite skipempty nextgroup=cssAtRuleNoise
-syntax region cssAtRuleString contained start=/'/ skip=/\\\\\|\\'/ end=/'/ contained skipwhite skipempty nextgroup=cssAtRuleNoise
+syntax region cssAtRuleString contained start=/"/ skip=/\\\\\|\\"/ end=/"/ contained skipwhite skipempty oneline nextgroup=cssAtRuleNoise
+syntax region cssAtRuleString contained start=/'/ skip=/\\\\\|\\'/ end=/'/ contained skipwhite skipempty oneline nextgroup=cssAtRuleNoise
 syntax match cssAtRuleNoise /;/ contained
 syntax match cssPagePseudos contained /:\%(left\|right\|blank\|first\|recto\|verso\)/
 
@@ -51,14 +51,14 @@ syntax match cssIDSelectorHash /#/ contained
 syntax match cssClassSelector /\.[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot
 syntax match cssClassSelectorDot /\./ contained
 
-syntax match cssPseudoSelector /:\{1,2\}/ nextgroup=cssPseudoKeyword,cssPseudoFunction
+syntax match cssPseudoSelector /:\{1,2\}/ nextgroup=cssPseudoKeyword,cssPseudoFunction,cssPseudoFunctionType
 syntax match cssPseudoKeyword contained /\<active\|after\|before\|checked\|disabled\|empty\|first-child\|first-letter\|first-line\|first-of-type\|focus\|hover\|input-placeholder\|last-child\|last-line\|last-of-type\|left\|link\|only-child\|only-of-type\|placeholder\|right\|selection\|visited\|scrollbar\|scrollbar-track-piece\|scrollbar-corner\>/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
-syntax region cssPseudoFunction     contained start=/[a-zA-Z09-_]\+(/ end=/)/ keepend nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssPseudoFunctionNot,cssPseudoFunctionDir,cssPseudoFunctionLang,cssPseudoFunctionType
+syntax region cssPseudoFunction     contained start=/[a-zA-Z0-9-_]\+(/ end=/)/ keepend nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssPseudoFunctionNot,cssPseudoFunctionDir,cssPseudoFunctionLang,cssPseudoFunctionType
 syntax region cssPseudoFunctionNot  contained matchgroup=cssFunctionDelimiters start=/not(/ end=/)/ contains=@cssSelectors
 syntax region cssPseudoFunctionDir  contained matchgroup=cssFunctionDelimiters start=/dir(/ end=/)/ contains=cssPseudoDirKeywords
 syntax region cssPseudoFunctionLang contained matchgroup=cssFunctionDelimiters start=/lang(/ end=/)/
-syntax region cssPseudoFunctionType contained matchgroup=cssFunctionDelimiters start=/nth-\%(child\|last-child\|last-of-type\|of-type\)(/ end=/)/ contains=cssPseudoFunctionTypeNumbers,cssPseudoFunctionTypeOperators
+syntax region cssPseudoFunctionType contained matchgroup=cssFunctionDelimiters start=/nth-\%(child\|last-child\|last-of-type\|of-type\)(/ end=/)/ contains=cssPseudoFunctionTypeNumbers,cssPseudoFunctionTypeOperators nextgroup=cssSelectorSeparator,cssDefinitionBlock
 
 syntax keyword cssPseudoDirKeywords           contained ltr rtl auto
 syntax keyword cssPseudoFunctionTypeNumbers   contained odd even
@@ -95,38 +95,61 @@ syntax match  cssFontOperator         contained /\//
 syntax region cssTransitionBlock      contained matchgroup=cssValueBlockDelimiters start=/:/ end=/;/ contains=@cssValues,cssBrowserPrefix,cssProp,cssValueNoise
 syntax region cssAnimationBlock       contained matchgroup=cssValueBlockDelimiters start=/:/ end=/;/ contains=@cssValues,cssValueNoise
 
-syntax match cssProp contained /\<\%(zoom\|z-index\|writing-mode\|wrap-through\|wrap-inside\|wrap-flow\|wrap-before\|wrap-after\|word-wrap\|word-spacing\|word-break\|will-change\|width\|widows\|white-space\|volume\|voice-volume\)\>/
-syntax match cssProp contained /\<\%(voice-stress\|voice-rate\|voice-range\|voice-pitch\|voice-family\|voice-duration\|voice-balance\|visibility\|vertical-align\|user-select\|unicode-range\|unicode-bidi\|transition-timing-function\)\>/
-syntax match cssProp contained /\<\%(transition-property\|transition-duration\|transition-delay\|transition\|transform-style\|transform-origin\|transform-box\|transform\|touch-callout\|touch-action\|top\|text-wrap\|text-underline-position\)\>/
-syntax match cssProp contained /\<\%(text-transform\|text-spacing\|text-space-trim\|text-space-collapse\|text-size-adjust\|text-shadow\|text-rendering\|text-overflow\|text-orientation\|text-justify\|text-indent\|text-emphasis-style\|text-emphasis-position\)\>/
-syntax match cssProp contained /\<\%(text-emphasis-color\|text-emphasis\|text-decoration-style\|text-decoration-skip\|text-decoration-line\|text-decoration-color\|text-decoration\|text-combine-upright\|text-align-last\|text-align-all\|text-align\)\>/
-syntax match cssProp contained /\<\%(tap-highlight-color\|table-layout\|tab-size\|stroke-width\|stroke-opacity\|stroke-miterlimit\|stroke-linejoin\|stroke-linecap\|stroke-dashoffset\|stroke-dashcorner\|stroke-dasharray\|stroke-dashadjust\)\>/
-syntax match cssProp contained /\<\%(stroke-alignment\|stroke\|string-set\|string-set\|stress\|src\|speech-rate\|speak-punctuation\|speak-numeral\|speak-header\|speak-as\|speak\|size\|shape-outside\|shape-margin\|shape-inside\|shape-image-threshold\)\>/
-syntax match cssProp contained /\<\%(scroll-snap-type\|scroll-snap-padding-top\|scroll-snap-padding-right\|scroll-snap-padding-left\|scroll-snap-padding-inline-start\|scroll-snap-padding-inline-end\|scroll-snap-padding-inline\|scroll-snap-padding-bottom\)\>/
-syntax match cssProp contained /\<\%(scroll-snap-padding-block-start\|scroll-snap-padding-block-end\|scroll-snap-padding-block\|scroll-snap-padding\|scroll-snap-padding\|scroll-snap-margin-top\|scroll-snap-margin-right\|scroll-snap-margin-left\)\>/
-syntax match cssProp contained /\<\%(scroll-snap-margin-inline-start\|scroll-snap-margin-inline-end\|scroll-snap-margin-inline\|scroll-snap-margin-bottom\|scroll-snap-margin-block-start\|scroll-snap-margin-block-end\|scroll-snap-margin-block\)\>/
-syntax match cssProp contained /\<\%(scroll-snap-margin\|scroll-snap-align\|scroll-behavior\|running\|ruby-position\|ruby-merge\|ruby-align\|rotation-point\|rotation\|right\|richness\|rest-before\|rest-after\|rest\|resize\|region-fragment\)\>/
-syntax match cssProp contained /\<\%(quotes\|presentation-level\|position\|polar-origin\|polar-distance\|polar-angle\|polar-anchor\|pointer-events\|play-during\|pitch-range\|pitch\|perspective-origin\|perspective\|pause-before\|pause-after\)\>/
-syntax match cssProp contained /\<\%(pause\|page-policy\|page-break-inside\|page-break-before\|page-break-after\|page\|padding-top\|padding-right\|padding-left\|padding-bottom\|padding\|overflow-y\|overflow-x\|overflow-wrap\|overflow-style\)\>/
-syntax match cssProp contained /\<\%(overflow\|outline-width\|outline-style\|outline-offset\|outline-color\|outline\|osx-font-smoothing\|orphans\|order\|opacity\|offset-start\|offset-end\|offset-before\|offset-after\|object-position\|object-fit\)\>/
-syntax match cssProp contained /\<\%(nav-up\|nav-right\|nav-left\|nav-down\|move-to\|motion-rotation\|motion-path\|motion-offset\|motion\|mix-blend-mode\|min-width\|min-height\|max-width\|max-lines\|max-height\|mask-type\|mask-size\|mask-repeat\)\>/
-syntax match cssProp contained /\<\%(mask-position\|mask-origin\|mask-mode\|mask-image\|mask-composite\|mask-clip\|mask-border-width\|mask-border-source\|mask-border-slice\|mask-border-repeat\|mask-border-outset\|mask-border-mode\|mask-border\)\>/
-syntax match cssProp contained /\<\%(mask\|marquee-style\|marquee-speed\|marquee-loop\|marquee-direction\|marker-start\|marker-side\|marker-segment\|marker-pattern\|marker-mid\|marker-knockout-right\|marker-knockout-left\|marker-end\|marker\)\>/
-syntax match cssProp contained /\<\%(margin-top\|margin-right\|margin-left\|margin-bottom\|margin\|list-style-type\|list-style-position\|list-style-image\|list-style\|line-snap\|line-height\|line-grid\|line-break\|lighting-color\|letter-spacing\)\>/
-syntax match cssProp contained /\<\%(left\|justify-self\|justify-items\|justify-content\|isolation\|interpolation-mode\|initial-letter-wrap\|initial-letter-align\|initial-letter\|image-resolution\|image-rendering\|image-orientation\|hyphens\)\>/
-syntax match cssProp contained /\<\%(hyphenate-limit-zone\|hyphenate-limit-lines\|hyphenate-limit-last\|hyphenate-limit-chars\|hyphenate-character\|height\|hanging-punctuation\|grid-template-rows\|grid-template-columns\|grid-template-areas\)\>/
-syntax match cssProp contained /\<\%(grid-template\|grid-row-start\|grid-row-gap\|grid-row-end\|grid-row\|grid-gap\|grid-column-start\|grid-column-gap\|grid-column-end\|grid-column\|grid-auto-rows\|grid-auto-flow\|grid-auto-columns\|grid-area\)\>/
-syntax match cssProp contained /\<\%(grid\|glyph-orientation-vertical\|footnote-policy\|footnote-display\)\>/
+syntax match cssProp contained /\<\%(zoom\|z-index\|writing-mode\|word-wrap\|word-spacing\|word-break\|will-change\|width\)\>/
+syntax match cssProp contained /\<\%(widows\|white-space\|volume\|voice-volume\|top\|text-wrap\|text-underline-position\|visibility\|vertical-align\|user-select\)\>/
+syntax match cssProp contained /\<\%(voice-stress\|voice-rate\|voice-range\|voice-pitch\|voice-family\|voice-duration\|voice-balance\|quotes\|presentation-level\)\>/
+syntax match cssProp contained /\<\%(unicode-range\|unicode-bidi\|tap-highlight-color\|table-layout\|tab-size\|string-set\|string-set\|stress\|src\)\>/
+syntax match cssProp contained /\<\%(transition-timing-function\|transition-property\|transition-duration\|transition-delay\|transition\)\>/
+syntax match cssProp contained /\<\%(transform-style\|transform-origin\|transform-box\|transform\)\>/
+syntax match cssProp contained /\<\%(text-rendering\|text-overflow\|text-orientation\|text-justify\|text-indent\|text-combine-upright\)\>/
+syntax match cssProp contained /\<\%(text-emphasis-style\|text-emphasis-position\|text-emphasis-color\|text-emphasis\)\>/
+syntax match cssProp contained /\<\%(text-decoration-style\|text-decoration-skip\|text-decoration-line\|text-decoration-color\|text-decoration\)\>/
+syntax match cssProp contained /\<\%(text-align-last\|text-align-all\|text-align\|touch-callout\|touch-action\|wrap-through\|wrap-inside\|wrap-flow\|wrap-before\|wrap-after\)\>/
+syntax match cssProp contained /\<\%(stroke-width\|stroke-opacity\|stroke-miterlimit\|stroke-linejoin\|stroke-linecap\|stroke-dashoffset\|stroke-dashcorner\|stroke-dasharray\|stroke-dashadjust\|stroke-alignment\|stroke\)\>/
+syntax match cssProp contained /\<\%(speech-rate\|size\|running\|ruby-position\|ruby-merge\|ruby-align\|right\|richness\|rest-before\|rest-after\|rest\|resize\)\>/
+syntax match cssProp contained /\<\%(speak-punctuation\|speak-numeral\|speak-header\|speak-as\|speak\)\>/
+syntax match cssProp contained /\<\%(scroll-snap-padding-top\|scroll-snap-padding-right\|scroll-snap-padding-left\|scroll-snap-padding-inline-start\|scroll-snap-padding-inline-end\|scroll-snap-padding-inline\|scroll-snap-padding-bottom\|scroll-snap-padding-block-start\|scroll-snap-padding-block-end\|scroll-snap-padding-block\|scroll-snap-padding\|scroll-snap-padding\)\>/
+syntax match cssProp contained /\<\%(scroll-snap-margin-top\|scroll-snap-margin-right\|scroll-snap-margin-left\|scroll-snap-margin-inline-start\|scroll-snap-margin-inline-end\|scroll-snap-margin-inline\|scroll-snap-margin-bottom\|scroll-snap-margin-block-start\|scroll-snap-margin-block-end\|scroll-snap-margin-block\|scroll-snap-margin\)\>/
+syntax match cssProp contained /\<\%(scroll-behavior\|text-transform\|text-spacing\|text-space-trim\|text-space-collapse\|text-size-adjust\|text-shadow\)\>/
+syntax match cssProp contained /\<\%(rotation-point\|rotation\)\>/
+syntax match cssProp contained /\<\%(region-fragment\|shape-outside\|shape-margin\|shape-inside\|shape-image-threshold\|scroll-snap-type\|scroll-snap-align\)\>/
+syntax match cssProp contained /\<\%(position\|polar-origin\|polar-distance\|polar-angle\|polar-anchor\|pointer-events\|play-during\|osx-font-smoothing\|orphans\)\>/
+syntax match cssProp contained /\<\%(pitch-range\|pitch\)\>/
+syntax match cssProp contained /\<\%(perspective-origin\|perspective\)\>/
+syntax match cssProp contained /\<\%(pause-before\|pause-after\|pause\)\>/
+syntax match cssProp contained /\<\%(page-policy\|page-break-inside\|page-break-before\|page-break-after\|page\)\>/
+syntax match cssProp contained /\<\%(padding-top\|padding-right\|padding-left\|padding-bottom\|padding\)\>/
+syntax match cssProp contained /\<\%(overflow-y\|overflow-x\|overflow-wrap\|overflow-style\|overflow\)\>/
+syntax match cssProp contained /\<\%(outline-width\|outline-style\|outline-offset\|outline-color\|outline\)\>/
+syntax match cssProp contained /\<\%(order\|opacity\|offset-start\|offset-end\|offset-before\|offset-after\|object-position\|object-fit\|nav-up\|nav-right\|nav-left\)\>/
+syntax match cssProp contained /\<\%(nav-down\|move-to\|mix-blend-mode\|min-width\|min-height\|max-width\|max-lines\|max-height\|marquee-style\|marquee-speed\)\>/
+syntax match cssProp contained /\<\%(motion-rotation\|motion-path\|motion-offset\|motion\)\>/
+syntax match cssProp contained /\<\%(mask-type\|mask-size\|mask-repeat\|mask-position\|mask-origin\|mask-mode\|mask-image\|mask-composite\|mask-clip\|mask-border-width\|mask-border-source\|mask-border-slice\|mask-border-repeat\|mask-border-outset\|mask-border-mode\|mask-border\|mask\)\>/
+syntax match cssProp contained /\<\%(marquee-loop\|marquee-direction\)\>/
+syntax match cssProp contained /\<\%(marker-start\|marker-side\|marker-segment\|marker-pattern\|marker-mid\|marker-knockout-right\|marker-knockout-left\|marker-end\|marker\)\>/
+syntax match cssProp contained /\<\%(line-snap\|line-height\|line-grid\|line-break\|lighting-color\|letter-spacing\|left\)\>/
+syntax match cssProp contained /\<\%(margin-top\|margin-right\|margin-left\|margin-bottom\|margin\)\>/
+syntax match cssProp contained /\<\%(list-style-type\|list-style-position\|list-style-image\|list-style\)\>/
+syntax match cssProp contained /\<\%(justify-self\|justify-items\|justify-content\|isolation\|interpolation-mode\|image-resolution\|image-rendering\|image-orientation\)\>/
+syntax match cssProp contained /\<\%(initial-letter-wrap\|initial-letter-align\|initial-letter\)\>/
+syntax match cssProp contained /\<\%(hyphens\|hyphenate-limit-zone\|hyphenate-limit-lines\|hyphenate-limit-last\|hyphenate-limit-chars\|hyphenate-character\)\>/
+syntax match cssProp contained /\<\%(height\|hanging-punctuation\|glyph-orientation-vertical\|footnote-policy\|footnote-display\|flood-opacity\|flood-color\|filter\)\>/
+syntax match cssProp contained /\<\%(grid-template-rows\|grid-template-columns\|grid-template-areas\|grid-template\|grid-row-start\|grid-row-gap\|grid-row-end\|grid-row\|grid-column-start\|grid-column-gap\|grid-column-end\|grid-column\|grid-gap\|grid-auto-rows\|grid-auto-flow\|grid-auto-columns\|grid-area\|grid\)\>/
 syntax match cssProp contained /\<\%(font-weight\|font-variant-position\|font-variant-numeric\|font-variant-ligatures\|font-variant-east-asian\|font-variant-caps\|font-variant-alternates\|font-variant\|font-synthesis\|font-style\|font-stretch\|font-smoothing\|font-size-adjust\|font-size\|font-language-override\|font-kerning\|font-feature-settings\|font-family\|font\)\>/
-syntax match cssProp contained /\<\%(flow-into\|flow-from\|flow\|flood-opacity\|flood-color\|float-reference\|float-offset\|float-defer\|float\|flex-wrap\|flex-shrink\|flex-grow\|flex-flow\|flex-direction\|flex-basis\|flex\|filter\|fill\|empty-cells\|elevation\)\>/
-syntax match cssProp contained /\<\%(dominant-baseline\|display\|direction\|d\|cursor\|cue-before\|cue-after\|cue\|crop\|counter-set\|counter-reset\|counter-increment\|content\|columns\|column-width\|column-span\|column-rule-width\|column-rule-style\)\>/
-syntax match cssProp contained /\<\%(column-rule-color\|column-rule\|column-gap\|column-fill\|column-count\|color-interpolation-filters\|color\|clip-rule\|clip-path\|clip\|clear\|chains\|caret-shape\|caret-color\|caret-animation\|caret\)\>/
-syntax match cssProp contained /\<\%(caption-side\|break-inside\|break-before\|break-after\|box-suppress\|box-snap\|box-sizing\|box-shadow\|box-decoration-break\|bottom\|border-width\|border-top-width\|border-top-style\|border-top-right-radius\)\>/
-syntax match cssProp contained /\<\%(border-top-left-radius\|border-top-color\|border-top\|border-style\|border-spacing\|border-right-width\|border-right-style\|border-right-color\|border-right\|border-radius\|border-left-width\|border-left-style\|border-left-color\|border-left\|border-image-width\|border-image-source\|border-image-slice\|border-image-repeat\|border-image-outset\|border-image\|border-color\|border-collapse\|border-boundary\|border-bottom-width\|border-bottom-style\|border-bottom-right-radius\|border-bottom-left-radius\|border-bottom-color\|border-bottom\|border\)\>/
-syntax match cssProp contained /\<\%(bookmark-state\|bookmark-level\|bookmark-label\|baseline-shift\|background-size\)\>/
-syntax match cssProp contained /\<\%(background-repeat\|background-position\|background-origin\|background-image\|background-color\|background-clip\|background-blend-mode\|background-attachment\|background\|backface-visibility\|azimuth\)\>/
-syntax match cssProp contained /\<\%(appearance\|animation-timing-function\|animation-play-state\|animation-name\|animation-iteration-count\|animation-fill-mode\|animation-duration\|animation-direction\|animation-delay\|animation\|all\|alignment-baseline\)\>/
-syntax match cssProp contained /\<\%(align-self\|align-items\|align-content\)\>/
+syntax match cssProp contained /\<\%(flow-into\|flow-from\|flow\)\>/
+syntax match cssProp contained /\<\%(float-reference\|float-offset\|float-defer\|float\)\>/
+syntax match cssProp contained /\<\%(flex-wrap\|flex-shrink\|flex-grow\|flex-flow\|flex-direction\|flex-basis\|flex\)\>/
+syntax match cssProp contained /\<\%(fill\|empty-cells\|elevation\|dominant-baseline\|display\|direction\|d\|cursor\|cue-before\|cue-after\|cue\|crop\|counter-set\)\>/
+syntax match cssProp contained /\<\%(counter-reset\|counter-increment\|content\|columns\|clear\|chains\|caption-side\|break-inside\|break-before\|break-after\)\>/
+syntax match cssProp contained /\<\%(column-width\|column-span\|column-rule-width\|column-rule-style\|column-rule-color\|column-rule\|column-gap\|column-fill\|column-count\)\>/
+syntax match cssProp contained /\<\%(color-interpolation-filters\|color\)\>/
+syntax match cssProp contained /\<\%(clip-rule\|clip-path\|clip\)\>/
+syntax match cssProp contained /\<\%(caret-shape\|caret-color\|caret-animation\|caret\)\>/
+syntax match cssProp contained /\<\%(box-suppress\|box-snap\|box-sizing\|box-shadow\|box-decoration-break\|bottom\|bookmark-state\|bookmark-level\|bookmark-label\)\>/
+syntax match cssProp contained /\<\%(border-width\|border-top-width\|border-top-style\|border-top-right-radius\|border-top-left-radius\|border-top-color\|border-top\|border-style\|border-spacing\|border-right-width\|border-right-style\|border-right-color\|border-right\|border-radius\|border-left-width\|border-left-style\|border-left-color\|border-left\|border-image-width\|border-image-source\|border-image-slice\|border-image-repeat\|border-image-outset\|border-image\|border-color\|border-collapse\|border-boundary\|border-bottom-width\|border-bottom-style\|border-bottom-right-radius\|border-bottom-left-radius\|border-bottom-color\|border-bottom\|border\)\>/
+syntax match cssProp contained /\<\%(baseline-shift\|backface-visibility\|azimuth\|appearance\|all\|alignment-baseline\|align-self\|align-items\|align-content\)\>/
+syntax match cssProp contained /\<\%(background-size\|background-repeat\|background-position\|background-origin\|background-image\|background-color\|background-clip\|background-blend-mode\|background-attachment\|background\)\>/
+syntax match cssProp contained /\<\%(animation-timing-function\|animation-play-state\|animation-name\|animation-iteration-count\|animation-fill-mode\|animation-duration\|animation-direction\|animation-delay\|animation\)\>/
 
 syntax match cssValueKeyword contained /\<\%(zoom-out\|zoom-in\|wrap\|wait\|w-resize\|visible\|vertical-text\|uppercase\|unset\|underline\|transparent\|top\|textfield\|text-top\|text-bottom\|text\|table-row-group\|table-row\|table-header-group\)\>/
 syntax match cssValueKeyword contained /\<\%(table-column\|table-cell\|table-caption\|table\|sw-resize\|super\|sub\|stretch\|step-start\|step-end\|status-bar\|static\|start\|space-between\|space-around\|solid\|small-caption\|small-caps\|serif\)\>/
@@ -138,10 +161,11 @@ syntax match cssValueKeyword contained /\<\%(forwards\|flex-start\|flex-end\|fle
 syntax match cssValueKeyword contained /\<\%(content-box\|contain\|condensed\|column\|collapse\|col-resize\|clip\|center\|cell\|caption\|capitalize\|button\|break-word\|bottom\|both\|border-box\|bolder\|bold\|block\|block\|baseline\|backwards\)\>/
 syntax match cssValueKeyword contained /\<\%(auto\|antialiased\|alternate-reverse\|alternate\|all-scroll\|alias\|absolute\)\>/
 
-syntax region  cssMediaDefinition start=/@media/ end=/{\@=/ nextgroup=cssMediaBlock skipwhite skipempty contains=cssAtRule,cssNumber,cssMediaNoise,cssMediaFeature
+syntax region  cssMediaDefinition start=/@media/ end=/{\@=/ nextgroup=cssMediaBlock skipwhite skipempty contains=cssAtRule,cssNumber,cssMediaNoise,cssMediaFeature,cssMediaFeatureAnd
 syntax region  cssMediaBlock contained matchgroup=cssMediaBraces start=/{/ end=/}/ contains=@cssSelectors,cssPageDefinition fold extend
-syntax match   cssMediaNoise contained /\%(:\|(\|)\|,\)/
-syntax keyword cssMediaFeature contained width update-frequency transition transform-3d transform-2d scripting scan scan resolution pointer overflow-inline overflow-block orientation monochrome min-width min-resolution min-monochrome min-height min-device-width min-device-height min-device-aspect-ratio min-color-index min-color min-aspect-ratio max-width max-resolution max-monochrome max-height max-device-width max-device-height max-device-aspect-ratio max-color-index max-color max-aspect-ratio light-level inverted-colors hover height grid display-mode device-width device-pixel-ratio device-height device-aspect-ratio color-index color aspect-ratio any-pointer any-hover animation
+syntax match cssMediaNoise contained /\%(:\|(\|)\|,\)/
+syntax match cssMediaFeature contained /\<\%(width\|update-frequency\|transition\|transform-3d\|transform-2d\|scripting\|scan\|scan\|resolution\|pointer\|overflow-inline\|overflow-block\|orientation\|monochrome\|min-width\|min-resolution\|min-monochrome\|min-height\|min-device-width\|min-device-height\|min-device-aspect-ratio\|min-color-index\|min-color\|min-aspect-ratio\|max-width\|max-resolution\|max-monochrome\|max-height\|max-device-width\|max-device-height\|max-device-aspect-ratio\|max-color-index\|max-color\|max-aspect-ratio\|light-level\|inverted-colors\|hover\|height\|grid\|display-mode\|device-width\|device-pixel-ratio\|device-height\|device-aspect-ratio\|color-index\|color\|aspect-ratio\|any-pointer\|any-hover\|animation\|handheld\|tv\)\>/
+syntax keyword cssMediaFeatureAnd contained and
 
 syntax keyword cssMediaTypes contained all print screen speech
 
@@ -149,8 +173,8 @@ syntax region cssPageDefinition start=/@page/ end=/{\@=/ skipwhite skipempty nex
 syntax region cssPageBlock contained matchgroup=cssPageBraces start=/{/ end=/}/ contains=cssPropDefinition,cssDefinitionBlock,cssAtRulePage fold
 syntax match  cssAtRulePage contained /@[a-zA-Z0-9-_]\+/
 
-syntax region cssString contained start=/"/ skip=/\\\\\|\\"/ end=/"/
-syntax region cssString contained start=/'/ skip=/\\\\\|\\'/ end=/'/
+syntax region cssString contained start=/"/ skip=/\\\\\|\\"/ end=/"/ oneline
+syntax region cssString contained start=/'/ skip=/\\\\\|\\'/ end=/'/ oneline
 
 syntax match cssImportant /!important/ contained
 
@@ -231,6 +255,7 @@ highlight default link cssKeyframe                    Constant
 highlight default link cssMediaDefinition             Constant
 highlight default link cssMediaNoise                  Noise
 highlight default link cssMediaFeature                Special
+highlight default link cssMediaFeatureAnd             Special
 highlight default link cssPseudoDirKeywords           Constant
 highlight default link cssPseudoFunctionLang          Constant
 highlight default link cssPseudoFunctionTypeOperators Operator
