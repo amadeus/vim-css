@@ -16,12 +16,6 @@ I have opted to NOT support pre-processor syntax that is white space dependent.
 Learn to love those curly brackets!
 
 
-## To Do List:
-
-* Add specialized animation and transform support
-* Other languages?!
-
-
 ## Why create yet another CSS syntax file for Vim?
 
 CSS and its various pre-processing languages tend to be pretty poorly supported
