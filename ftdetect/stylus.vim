@@ -7,6 +7,7 @@ if exists("b:did_ftplugin")
   finish
 endif
 let b:did_ftplugin = 1
+let b:undo_ftplugin = ""
 
 autocmd BufNewFile,BufReadPost *.styl set filetype=stylus
 autocmd BufNewFile,BufReadPost *.stylus set filetype=stylus
