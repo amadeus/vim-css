@@ -157,7 +157,7 @@ syntax match cssValueKeyword contained /\<\%(se-resize\|scroll\|scale-down\|sans
 syntax match cssValueKeyword contained /\<\%(pre-wrap\|pre-line\|pre\|pointer\|pixelated\|paused\|padding-box\|overflow-scrolling\|optimizeLegibility\|optimize-contrast\|oblique\|nwse-resize\|nw-resize\|ns-resize\|nowrap\|not-allowed\|normal\|none\)\>/
 syntax match cssValueKeyword contained /\<\%(no-repeat\|no-drop\|no-allowed\|nesw-resize\|nearest-neighbor\|ne-resize\|n-resize\|move\|monospace\|middle\|message-box\|menu\|match-parent\|manipulation\|lowercase\|list-item\|linear\|left\|justify-all\)\>/
 syntax match cssValueKeyword contained /\<\%(justify\|italic\|inset\|inline-table\|inline-list-item\|inline-grid\|inline-flex\|inline-block\|inline\|initial\|inherit\|infinite\|icon\|hidden\|help\|grid\|grayscale\|grabbing\|grab\|full-width\)\>/
-syntax match cssValueKeyword contained /\<\%(forwards\|flex-start\|flex-end\|flex\|fill\|end\|ellipsis\|ease-out\|ease-in-out\|ease-in\|e-resize\|dotted\|default\|dashed\|cursive\|crosshair\|crisp-edges\|cover\|courier\|context-menu\|contents\)\>/
+syntax match cssValueKeyword contained /\<\%(forwards\|flex-start\|flex-end\|flex\|fixed\|fill\|end\|ellipsis\|ease-out\|ease-in-out\|ease-in\|e-resize\|dotted\|default\|dashed\|cursive\|crosshair\|crisp-edges\|cover\|courier\|context-menu\|contents\)\>/
 syntax match cssValueKeyword contained /\<\%(content-box\|contain\|condensed\|column\|collapse\|col-resize\|clip\|center\|cell\|caption\|capitalize\|button\|break-word\|bottom\|both\|border-box\|bolder\|bold\|block\|block\|baseline\|backwards\)\>/
 syntax match cssValueKeyword contained /\<\%(auto\|antialiased\|alternate-reverse\|alternate\|all-scroll\|alias\|absolute\)\>/
 

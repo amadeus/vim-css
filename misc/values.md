@@ -134,6 +134,7 @@ forwards
 flex-start
 flex-end
 flex
+fixed
 fill
 end
 ellipsis
