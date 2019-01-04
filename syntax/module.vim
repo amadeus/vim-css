@@ -29,10 +29,8 @@ syntax match cssmComposesFrom /from/ contained skipwhite skipempty nextgroup=css
 
 syntax match cssmClass contained /\k\+/ skipwhite skipempty nextgroup=cssmComposesFrom
 
-syntax match cssmGlobal /:global/ skipwhite skipempty nextgroup=cssmGlobalArgs contains=cssmGlobalKeyword,cssmGlobalColon containedin=cssDefinitionBlock
-syntax region cssmGlobalArgs contained matchgroup=cssmGlobalParens start=/(/ end=/)/  contains=cssClassSelector skipwhite skipempty nextgroup=cssDefinitionBlock
-syntax match cssmGlobalKeyword contained /global/ contains=cssmGlobalColon
-syntax match cssmGlobalColon contained /:/
+syntax region cssPseudoFunctionGlobal  contained matchgroup=cssFunctionDelimiters start=/global(/ end=/)/ contains=@cssSelectors containedin=cssPseudoFunction
+
 syntax match  cssmComment "//.*" contains=@Spell containedin=cssDefinitionBlock
 
 highlight default link cssmAmpersand    Special
@@ -41,11 +39,9 @@ highlight default link cssmImportKeywords Comment
 highlight default link cssmComposesFrom Comment
 highlight default link cssmClass cssClassSelector
 highlight default link cssmNoise Noise
-highlight default link cssmGlobalColon Noise
 highlight default link cssmGlobalParens Noise
 highlight default link cssComposesValueDelims Noise
 highlight default link cssmComposes cssProp
-highlight default link cssmGlobalKeyword cssProp
 
 setlocal iskeyword+=$
 
