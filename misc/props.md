@@ -110,6 +110,8 @@ shape-outside
 shape-margin
 shape-inside
 shape-image-threshold
+scrollbar-width
+scrollbar-color
 scroll-snap-type
 scroll-snap-padding-top
 scroll-snap-padding-right

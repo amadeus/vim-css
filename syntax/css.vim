@@ -111,7 +111,7 @@ syntax match cssProp contained /\<\%(speak-punctuation\|speak-numeral\|speak-hea
 syntax match cssProp contained /\<\%(scroll-snap-padding-top\|scroll-snap-padding-right\|scroll-snap-padding-left\|scroll-snap-padding-inline-start\|scroll-snap-padding-inline-end\|scroll-snap-padding-inline\|scroll-snap-padding-bottom\|scroll-snap-padding-block-start\|scroll-snap-padding-block-end\|scroll-snap-padding-block\|scroll-snap-padding\|scroll-snap-padding\)\>/
 syntax match cssProp contained /\<\%(scroll-snap-margin-top\|scroll-snap-margin-right\|scroll-snap-margin-left\|scroll-snap-margin-inline-start\|scroll-snap-margin-inline-end\|scroll-snap-margin-inline\|scroll-snap-margin-bottom\|scroll-snap-margin-block-start\|scroll-snap-margin-block-end\|scroll-snap-margin-block\|scroll-snap-margin\)\>/
 syntax match cssProp contained /\<\%(scroll-behavior\|text-transform\|text-spacing\|text-space-trim\|text-space-collapse\|text-size-adjust\|text-shadow\)\>/
-syntax match cssProp contained /\<\%(rotation-point\|rotation\)\>/
+syntax match cssProp contained /\<\%(rotation-point\|rotation\|scrollbar-width\|scrollbar-color\)\>/
 syntax match cssProp contained /\<\%(region-fragment\|shape-outside\|shape-margin\|shape-inside\|shape-image-threshold\|scroll-snap-type\|scroll-snap-align\)\>/
 syntax match cssProp contained /\<\%(position\|polar-origin\|polar-distance\|polar-angle\|polar-anchor\|pointer-events\|play-during\|osx-font-smoothing\|orphans\)\>/
 syntax match cssProp contained /\<\%(pitch-range\|pitch\)\>/
