@@ -316,6 +316,7 @@ font-language-override
 font-kerning
 font-feature-settings
 font-family
+font-display
 font
 flow-into
 flow-from

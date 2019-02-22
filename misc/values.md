@@ -39,6 +39,7 @@ table-column
 table-cell
 table-caption
 table
+swap
 sw-resize
 super
 sub
@@ -81,6 +82,7 @@ pixelated
 paused
 padding-box
 overflow-scrolling
+optional
 optimizeLegibility
 optimize-contrast
 oblique
@@ -136,6 +138,7 @@ flex-end
 flex
 fixed
 fill
+fallback
 end
 ellipsis
 ease-out
