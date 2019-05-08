@@ -58,7 +58,7 @@ syntax region cssPseudoFunction     contained start=/[a-zA-Z0-9-_]\+(/ end=/)/ k
 syntax region cssPseudoFunctionNot  contained matchgroup=cssFunctionDelimiters start=/not(/ end=/)/ contains=@cssSelectors
 syntax region cssPseudoFunctionDir  contained matchgroup=cssFunctionDelimiters start=/dir(/ end=/)/ contains=cssPseudoDirKeywords
 syntax region cssPseudoFunctionLang contained matchgroup=cssFunctionDelimiters start=/lang(/ end=/)/
-syntax region cssPseudoFunctionType contained matchgroup=cssFunctionDelimiters start=/nth-\%(child\|last-child\|last-of-type\|of-type\)(/ end=/)/ contains=cssPseudoFunctionTypeNumbers,cssPseudoFunctionTypeOperators nextgroup=cssSelectorSeparator,cssDefinitionBlock
+syntax region cssPseudoFunctionType contained matchgroup=cssFunctionDelimiters start=/nth-\%(child\|last-child\|last-of-type\|of-type\)(/ end=/)/ keepend contains=cssPseudoFunctionTypeNumbers,cssPseudoFunctionTypeOperators skipwhite skipempty nextgroup=cssSelectorSeparator,cssDefinitionBlock,cssDefinitionBraces
 
 syntax keyword cssPseudoDirKeywords           contained ltr rtl auto
 syntax keyword cssPseudoFunctionTypeNumbers   contained odd even
