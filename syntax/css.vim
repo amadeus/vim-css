@@ -142,7 +142,7 @@ syntax match cssProp contained /\<\%(flex-wrap\|flex-shrink\|flex-grow\|flex-flo
 syntax match cssProp contained /\<\%(fill\|empty-cells\|elevation\|dominant-baseline\|display\|direction\|d\|cursor\|cue-before\|cue-after\|cue\|crop\|counter-set\)\>/
 syntax match cssProp contained /\<\%(counter-reset\|counter-increment\|content\|columns\|clear\|chains\|caption-side\|break-inside\|break-before\|break-after\)\>/
 syntax match cssProp contained /\<\%(column-width\|column-span\|column-rule-width\|column-rule-style\|column-rule-color\|column-rule\|column-gap\|column-fill\|column-count\)\>/
-syntax match cssProp contained /\<\%(color-interpolation-filters\|color\)\>/
+syntax match cssProp contained /\<\%(color-interpolation-filters\|color\|contain\)\>/
 syntax match cssProp contained /\<\%(clip-rule\|clip-path\|clip\)\>/
 syntax match cssProp contained /\<\%(caret-shape\|caret-color\|caret-animation\|caret\)\>/
 syntax match cssProp contained /\<\%(box-suppress\|box-snap\|box-sizing\|box-shadow\|box-decoration-break\|bottom\|bookmark-state\|bookmark-level\|bookmark-label\)\>/
@@ -151,14 +151,29 @@ syntax match cssProp contained /\<\%(baseline-shift\|backface-visibility\|azimut
 syntax match cssProp contained /\<\%(background-size\|background-repeat\|background-position\|background-origin\|background-image\|background-color\|background-clip\|background-blend-mode\|background-attachment\|background\)\>/
 syntax match cssProp contained /\<\%(animation-timing-function\|animation-play-state\|animation-name\|animation-iteration-count\|animation-fill-mode\|animation-duration\|animation-direction\|animation-delay\|animation\)\>/
 
-syntax match cssValueKeyword contained /\<\%(zoom-out\|zoom-in\|wrap\|wait\|w-resize\|visible\|vertical-text\|uppercase\|unset\|underline\|transparent\|top\|textfield\|text-top\|text-bottom\|text\|table-row-group\|table-row\|table-header-group\)\>/
-syntax match cssValueKeyword contained /\<\%(table-column\|table-cell\|table-caption\|table\|sw-resize\|swap\|super\|sub\|stretch\|step-start\|step-end\|status-bar\|static\|start\|space-between\|space-around\|solid\|small-caption\|small-caps\|serif\)\>/
-syntax match cssValueKeyword contained /\<\%(se-resize\|scroll\|scale-down\|sans-serif\|s-resize\|running\|run-in\|ruby-text-container\|ruby-text\|ruby-base-container\|ruby-base\|ruby\|row-resize\|row\|right\|reverse\|repeat\|relative\|progress\)\>/
-syntax match cssValueKeyword contained /\<\%(pre-wrap\|pre-line\|pre\|pointer\|pixelated\|paused\|padding-box\|overflow-scrolling\|optional\|optimizeLegibility\|optimize-contrast\|oblique\|nwse-resize\|nw-resize\|ns-resize\|nowrap\|not-allowed\|normal\|none\)\>/
-syntax match cssValueKeyword contained /\<\%(no-repeat\|no-drop\|no-allowed\|nesw-resize\|nearest-neighbor\|ne-resize\|n-resize\|move\|monospace\|middle\|message-box\|menu\|match-parent\|manipulation\|lowercase\|list-item\|linear\|left\|justify-all\)\>/
-syntax match cssValueKeyword contained /\<\%(justify\|italic\|inset\|inline-table\|inline-list-item\|inline-grid\|inline-flex\|inline-block\|inline\|initial\|inherit\|infinite\|icon\|hidden\|help\|grid\|grayscale\|grabbing\|grab\|full-width\)\>/
-syntax match cssValueKeyword contained /\<\%(forwards\|flex-start\|flex-end\|flex\|fixed\|fallback\|fill\|end\|ellipsis\|ease-out\|ease-in-out\|ease-in\|e-resize\|dotted\|default\|dashed\|cursive\|crosshair\|crisp-edges\|cover\|courier\|context-menu\|contents\)\>/
-syntax match cssValueKeyword contained /\<\%(content-box\|contain\|condensed\|column\|collapse\|col-resize\|clip\|center\|cell\|caption\|capitalize\|button\|break-word\|bottom\|both\|border-box\|bolder\|bold\|block\|block\|baseline\|backwards\)\>/
+syntax match cssValueKeyword contained /\<\%(zoom-out\|zoom-in\|wrap\|wait\|w-resize\|visible\|vertical-text\)\>/
+syntax match cssValueKeyword contained /\<\%(uppercase\|unset\|underline\|transparent\|top\|textfield\|text-top\|text-bottom\|text\)\>/
+syntax match cssValueKeyword contained /\<\%(table-row-group\|table-row\|table-header-group\|table-column\|table-cell\|table-caption\|table\)\>/
+syntax match cssValueKeyword contained /\<\%(swap\|sw-resize\|super\|sub\|style\|strict\|stretch\|step-start\|step-end\)\>/
+syntax match cssValueKeyword contained /\<\%(status-bar\|static\|start\|space-between\|space-around\|solid\|small-caption\)\>/
+syntax match cssValueKeyword contained /\<\%(small-caps\|size\|serif\|se-resize\|scroll\|scale-down\|sans-serif\|s-resize\)\>/
+syntax match cssValueKeyword contained /\<\%(running\|run-in\|ruby-text-container\|ruby-text\|ruby-base-container\|ruby-base\)\>/
+syntax match cssValueKeyword contained /\<\%(ruby\|row-resize\|row\|right\|reverse\|repeat\|relative\|progress\)\>/
+syntax match cssValueKeyword contained /\<\%(pre-wrap\|pre-line\|pre\|pointer\|pixelated\|paused\|paint\)\>/
+syntax match cssValueKeyword contained /\<\%(padding-box\|overflow-scrolling\|optional\|optimizeLegibility\)\>/
+syntax match cssValueKeyword contained /\<\%(optimize-contrast\|oblique\|nwse-resize\|nw-resize\|ns-resize\|nowrap\|not-allowed\)\>/
+syntax match cssValueKeyword contained /\<\%(normal\|none\|no-repeat\|no-drop\|no-allowed\|nesw-resize\|nearest-neighbor\)\>/
+syntax match cssValueKeyword contained /\<\%(ne-resize\|n-resize\|move\|monospace\|middle\|message-box\|menu\|match-parent\)\>/
+syntax match cssValueKeyword contained /\<\%(manipulation\|lowercase\|list-item\|linear\|left\|layout\|justify-all\|justify\)\>/
+syntax match cssValueKeyword contained /\<\%(italic\|inset\|inline-table\|inline-list-item\|inline-grid\)\>/
+syntax match cssValueKeyword contained /\<\%(inline-flex\|inline-block\|inline\|initial\|inherit\|infinite\|icon\)\>/
+syntax match cssValueKeyword contained /\<\%(hidden\|help\|grid\|grayscale\|grabbing\|grab\|full-width\|forwards\)\>/
+syntax match cssValueKeyword contained /\<\%(flex-start\|flex-end\|flex\|fixed\|fill\|fallback\|end\|ellipsis\)\>/
+syntax match cssValueKeyword contained /\<\%(ease-out\|ease-in-out\|ease-in\|e-resize\|dotted\|default\|dashed\)\>/
+syntax match cssValueKeyword contained /\<\%(cursive\|crosshair\|crisp-edges\|cover\|courier\|context-menu\|contents\)\>/
+syntax match cssValueKeyword contained /\<\%(content-box\|content\|contain\|condensed\|column\|collapse\|col-resize\)\>/
+syntax match cssValueKeyword contained /\<\%(clip\|center\|cell\|caption\|capitalize\|button\|break-word\|bottom\)\>/
+syntax match cssValueKeyword contained /\<\%(both\|border-box\|bolder\|bold\|block\|baseline\|backwards\)\>/
 syntax match cssValueKeyword contained /\<\%(auto\|antialiased\|alternate-reverse\|alternate\|all-scroll\|alias\|absolute\)\>/
 
 syntax region  cssMediaDefinition start=/@media/ end=/{\@=/ nextgroup=cssMediaBlock skipwhite skipempty contains=cssAtRule,cssNumber,cssMediaNoise,cssMediaFeature,cssMediaFeatureAnd

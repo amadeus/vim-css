@@ -351,6 +351,7 @@ counter-set
 counter-reset
 counter-increment
 content
+contain
 columns
 column-width
 column-span

@@ -43,6 +43,8 @@ swap
 sw-resize
 super
 sub
+style
+strict
 stretch
 step-start
 step-end
@@ -54,6 +56,7 @@ space-around
 solid
 small-caption
 small-caps
+size
 serif
 se-resize
 scroll
@@ -80,6 +83,7 @@ pre
 pointer
 pixelated
 paused
+paint
 padding-box
 overflow-scrolling
 optional
@@ -111,6 +115,7 @@ lowercase
 list-item
 linear
 left
+layout
 justify-all
 justify
 italic
@@ -156,6 +161,7 @@ courier
 context-menu
 contents
 content-box
+content
 contain
 condensed
 column
@@ -173,7 +179,6 @@ both
 border-box
 bolder
 bold
-block
 block
 baseline
 backwards
