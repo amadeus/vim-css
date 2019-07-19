@@ -84,7 +84,7 @@ syntax match    cssKeyframeComma contained /,/ skipwhite skipempty nextgroup=css
 syntax match  cssFontFaceDefinition /@font-face/ nextgroup=cssFontFaceBlock skipwhite skipempty
 syntax region cssFontFaceBlock contained matchgroup=cssFontFaceBraces start=/{/ end=/}/ extend contains=cssPropDefinition fold
 
-syntax match  cssPropDefinition       contained /[a-zA-Z-]\+\%([ \r\t\n]*:\)\@=/ nextgroup=cssValueBlock skipwhite skipempty contains=cssProp,cssBrowserPrefix
+syntax match  cssPropDefinition       contained /[a-zA-Z-]\+\%([ \r\t\n]*:\)\@=/ nextgroup=cssValueBlock skipwhite skipempty contains=cssProp,cssVariableDefinition,cssBrowserPrefix
 syntax match  cssPropDefinition       contained /font\%(-family\)\=\%([ \r\t\n]*:\)\@=/ nextgroup=cssFontBlock skipwhite skipempty contains=cssProp,cssBrowserPrefix
 syntax match  cssPropDefinition       contained /transition\%(-property\)\=\%([ \r\t\n]*:\)\@=/ nextgroup=cssTransitionBlock skipwhite skipempty contains=cssProp,cssBrowserPrefix
 syntax match  cssPropDefinition       contained /animation\%(-name\)\=\%([ \r\t\n]*:\)\@=/ nextgroup=cssAnimationBlock skipwhite skipempty contains=cssProp,cssBrowserPrefix
@@ -95,6 +95,7 @@ syntax match  cssFontOperator         contained /\//
 syntax region cssTransitionBlock      contained matchgroup=cssValueBlockDelimiters start=/:/ end=/;/ contains=@cssValues,cssBrowserPrefix,cssProp,cssValueNoise
 syntax region cssAnimationBlock       contained matchgroup=cssValueBlockDelimiters start=/:/ end=/;/ contains=@cssValues,cssValueNoise
 
+syntax match cssVariableDefinition    contained /--[a-zA-Z0-9-_]\+/
 syntax match cssProp contained /\<\%(zoom\|z-index\|writing-mode\|word-wrap\|word-spacing\|word-break\|will-change\|width\)\>/
 syntax match cssProp contained /\<\%(widows\|white-space\|volume\|voice-volume\|top\|text-wrap\|text-underline-position\|visibility\|vertical-align\|user-select\)\>/
 syntax match cssProp contained /\<\%(voice-stress\|voice-rate\|voice-range\|voice-pitch\|voice-family\|voice-duration\|voice-balance\|quotes\|presentation-level\)\>/
@@ -204,13 +205,16 @@ syntax keyword cssColor contained aliceblue antiquewhite aqua aquamarine azure b
 
 syntax match cssUnits contained /\%(#\|%\|mm\|cm\|in\|pt\|pc\|em\|ex\|px\|rem\|dpi\|dppx\|dpcm\|vh\|vw\|vmin\|vmax\|deg\|grad\|rad\|ms\|s\|Hz\|kHz\|fr\)/
 
+syntax match cssVariable contained /--[a-zA-Z0-9-_]\+/
+
 syntax region cssFunction        contained  start=/\<[a-zA-Z0-9-]\+\>\+(/ end=/)/ contains=cssFuncName extend keepend
-syntax match cssFuncName         contained  /\<[a-zA-Z0-9-]\+\>(\@=/ nextgroup=cssFuncArgs,cssFuncUrlArgs,cssFuncAttrArgs,cssFuncEffectArgs,cssFuncCalcArgs
+syntax match cssFuncName         contained  /\<[a-zA-Z0-9-]\+\>(\@=/ nextgroup=cssFuncArgs,cssFuncUrlArgs,cssFuncVar,cssFuncAttrArgs,cssFuncEffectArgs,cssFuncCalcArgs
 syntax region cssFuncArgs        contained matchgroup=cssFuncDelimiters start=/(/ end=/)/ contains=cssFunction,cssString,cssNumber,cssHexColor,cssColor,cssOperators,cssValueNoise
 syntax region cssFuncUrlArgs     contained matchgroup=cssFuncDelimiters start=/\%(url\)\@<=(/ end=/)/ contains=cssString
 syntax region cssFuncAttrArgs    contained matchgroup=cssFuncDelimiters start=/\%(attr\)\@<=(/ end=/)/ contains=cssAttrProp
 syntax region cssFuncEffectArgs  contained matchgroup=cssFuncDelimiters start=/\%(blur\|brightness\|contrast\|drop-shadow\|grayscale\|hue-rotate\|invert\|opacity\|saturate\|sepia\)\@<=(/ end=/)/ contains=cssNumber,cssColor
 syntax region cssFuncCalcArgs    contained matchgroup=cssFuncDelimiters start=/\%(calc\)\@<=(/ end=/)/ contains=cssNumber,cssOperators
+syntax region cssFuncVar         contained matchgroup=cssFuncDelimiters start=/\%(var\)\@<=(/ end=/)/ contains=cssVariable,@cssValues,cssValueNoise
 
 syntax match  cssAttrProp     contained /\k\+/ skipwhite skipempty nextgroup=cssAttrTypes,cssAttrComma
 syntax match  cssAttrTypes    contained /\%(string\|integer\|color\|url\|integer\|number\|length\|angle\|time\|frequency\|em\|ex\|px\|rem\|vw\|vh\|vmin\|vmax\|mm\|cm\|in\|pt\|pc\|deg\|grad\|rad\|ms\|s\|Hz\|kHz\|%\)/ skipwhite skipempty nextgroup=cssAttrComma
@@ -283,6 +287,8 @@ highlight default link cssOperators                   Operator
 highlight default link cssBracketError                Error
 highlight default link cssFuncName                    Function
 highlight default link cssFuncDelimiters              Operator
+highlight default link cssVariableDefinition          Special
+highlight default link cssVariable                    Special
 
 let b:current_syntax = "css"
 
