@@ -84,7 +84,7 @@ syntax match    cssKeyframeComma contained /,/ skipwhite skipempty nextgroup=css
 syntax match  cssFontFaceDefinition /@font-face/ nextgroup=cssFontFaceBlock skipwhite skipempty
 syntax region cssFontFaceBlock contained matchgroup=cssFontFaceBraces start=/{/ end=/}/ extend contains=cssPropDefinition fold
 
-syntax match  cssPropDefinition       contained /[a-zA-Z-]\+\%([ \r\t\n]*:\)\@=/ nextgroup=cssValueBlock skipwhite skipempty contains=cssProp,cssVariableDefinition,cssBrowserPrefix
+syntax match  cssPropDefinition       contained /[a-zA-Z0-9-_]\+\%([ \r\t\n]*:\)\@=/ nextgroup=cssValueBlock skipwhite skipempty contains=cssProp,cssVariableDefinition,cssBrowserPrefix
 syntax match  cssPropDefinition       contained /font\%(-family\)\=\%([ \r\t\n]*:\)\@=/ nextgroup=cssFontBlock skipwhite skipempty contains=cssProp,cssBrowserPrefix
 syntax match  cssPropDefinition       contained /transition\%(-property\)\=\%([ \r\t\n]*:\)\@=/ nextgroup=cssTransitionBlock skipwhite skipempty contains=cssProp,cssBrowserPrefix
 syntax match  cssPropDefinition       contained /animation\%(-name\)\=\%([ \r\t\n]*:\)\@=/ nextgroup=cssAnimationBlock skipwhite skipempty contains=cssProp,cssBrowserPrefix
