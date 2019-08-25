@@ -3,20 +3,20 @@
 " Maintainer:   Amadeus Demarzi, http://github.com/amadeus
 " URL:          https://github.com/amadeus/vim-css
 
-if !exists("main_syntax")
-  let main_syntax = "css"
+if !exists('main_syntax')
+  let main_syntax = 'css'
 endif
 
-if exists("b:current_syntax") && b:current_syntax == "css"
+if exists('b:current_syntax') && b:current_syntax ==# 'css'
   finish
 endif
 
-if !exists('b:embedded_rules') && main_syntax != 'css'
+if !exists('b:embedded_rules') && main_syntax !=# 'css'
   syntax clear
 endif
 
-let s:cpo_save = &cpo
-set cpo&vim
+let s:cpo_save = &cpoptions
+set cpoptions&vim
 
 syntax sync fromstart
 
@@ -290,11 +290,11 @@ highlight default link cssFuncDelimiters              Operator
 highlight default link cssVariableDefinition          Special
 highlight default link cssVariable                    Special
 
-let b:current_syntax = "css"
+let b:current_syntax = 'css'
 
-if main_syntax == 'css'
+if main_syntax ==# 'css'
   unlet main_syntax
 endif
 
-let &cpo = s:cpo_save
+let &cpoptions = s:cpo_save
 unlet s:cpo_save
