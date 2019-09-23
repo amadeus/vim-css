@@ -52,7 +52,7 @@ syntax match cssClassSelector /\.[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelect
 syntax match cssClassSelectorDot /\./ contained
 
 syntax match cssPseudoSelector /:\{1,2\}/ nextgroup=cssPseudoKeyword,cssPseudoFunction,cssPseudoFunctionType
-syntax match cssPseudoKeyword contained /\<active\|after\|before\|checked\|disabled\|empty\|first-child\|first-letter\|first-line\|first-of-type\|focus-within\|focus\|hover\|input-placeholder\|last-child\|last-line\|last-of-type\|left\|link\|only-child\|only-of-type\|placeholder\|right\|selection\|visited\|scrollbar\|scrollbar-track-piece\|scrollbar-corner\>/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
+syntax match cssPseudoKeyword contained /\<active\|after\|before\|checked\|disabled\|empty\|first-child\|first-letter\|first-line\|first-of-type\|focus-within\|focus\|hover\|input-placeholder\|last-child\|last-line\|last-of-type\|left\|link\|only-child\|only-of-type\|placeholder\|right\|selection\|visited\|scrollbar-track-piece\|scrollbar-button\|scrollbar-corner\|scrollbar\>/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
 syntax region cssPseudoFunction     contained start=/[a-zA-Z0-9-_]\+(/ end=/)/ keepend extend nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssPseudoFunctionNot,cssPseudoFunctionDir,cssPseudoFunctionLang,cssPseudoFunctionType
 syntax region cssPseudoFunctionNot  contained matchgroup=cssFunctionDelimiters start=/not(/ end=/)/ contains=@cssSelectors
@@ -65,7 +65,7 @@ syntax keyword cssPseudoFunctionTypeNumbers   contained odd even
 syntax match   cssPseudoFunctionTypeNumbers   contained /\d/
 syntax match   cssPseudoFunctionTypeOperators contained /\%(+\|-\|n\)/
 
-syntax match cssPseudoKeyword contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)\%(input-placeholder\|search-cancel-button\|search-decoration\|focus-inner\|placeholder\|inner-spin-button\|outer-spin-button\|expand\|scrollbar-track-piece\|scrollbar-track\|scrollbar-thumb\|scrollbar-corner\|scrollbar\|full-screen\|media-controls-enclosure\)/ contains=cssBrowserPrefix nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
+syntax match cssPseudoKeyword contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)\%(input-placeholder\|search-cancel-button\|search-decoration\|focus-inner\|resizer\|placeholder\|inner-spin-button\|outer-spin-button\|expand\|scrollbar-track-piece\|scrollbar-track\|scrollbar-thumb\|scrollbar-button\|scrollbar-corner\|scrollbar\|full-screen\|media-controls-enclosure\)/ contains=cssBrowserPrefix nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
 syntax region cssAttributeSelector matchgroup=cssAttributeSelectorBraces start=/\[/ end=/\]/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
