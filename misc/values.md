@@ -28,6 +28,7 @@ unset
 underline
 transparent
 top
+thin
 textfield
 text-top
 text-bottom
