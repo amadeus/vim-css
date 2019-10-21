@@ -166,8 +166,8 @@ syntax match cssValueKeyword contained /\<\%(optimize-contrast\|oblique\|nwse-re
 syntax match cssValueKeyword contained /\<\%(normal\|none\|no-repeat\|no-drop\|no-allowed\|nesw-resize\|nearest-neighbor\)\>/
 syntax match cssValueKeyword contained /\<\%(ne-resize\|n-resize\|move\|monospace\|middle\|message-box\|menu\|match-parent\)\>/
 syntax match cssValueKeyword contained /\<\%(manipulation\|lowercase\|list-item\|linear\|left\|layout\|justify-all\|justify\)\>/
-syntax match cssValueKeyword contained /\<\%(italic\|inset\|inline-table\|inline-list-item\|inline-grid\)\>/
-syntax match cssValueKeyword contained /\<\%(inline-flex\|inline-block\|inline\|initial\|inherit\|infinite\|icon\)\>/
+syntax match cssValueKeyword contained /\<\%(italic\|inset\|inline-table\|inline-list-item\)\>/
+syntax match cssValueKeyword contained /\<\%(inline-grid\|inline-flex\|inline-block\|inline\|initial\|inherit\|infinite\|icon\)\>/
 syntax match cssValueKeyword contained /\<\%(hidden\|help\|grid\|grayscale\|grabbing\|grab\|full-width\|forwards\)\>/
 syntax match cssValueKeyword contained /\<\%(flex-start\|flex-end\|flex\|fixed\|fill\|fallback\|end\|ellipsis\)\>/
 syntax match cssValueKeyword contained /\<\%(ease-out\|ease-in-out\|ease-in\|e-resize\|dotted\|default\|dashed\)\>/
