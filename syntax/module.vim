@@ -3,11 +3,11 @@
 " Maintainer:   Amadeus Demarzi, http://github.com/amadeus
 " URL:          https://github.com/amadeus/vim-css
 
-if !exists("main_syntax")
-  let main_syntax = "css.module"
+if !exists('main_syntax')
+  let main_syntax = 'css.module'
 endif
 
-if exists("b:current_syntax") && b:current_syntax == "css.module"
+if exists('b:current_syntax') && b:current_syntax == 'css.module'
   finish
 endif
 
@@ -45,4 +45,8 @@ highlight default link cssmComposes cssProp
 
 setlocal iskeyword+=$
 
-let b:current_syntax = "css.module"
+let b:current_syntax = 'css.module'
+
+if main_syntax ==# 'css.module'
+  unlet main_syntax
+endif

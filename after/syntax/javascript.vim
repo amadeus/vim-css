@@ -1,6 +1,4 @@
-if exists('main_syntax') && main_syntax != 'javascript'
-  finish
-endif
+finish " This is temporarily disabled while I re-look into it...
 
 if exists("b:current_syntax")
   let s:current_syntax=b:current_syntax
@@ -15,11 +13,11 @@ if sc_import_line == 0 && sc_require_line == 0
 endif
 
 let b:embedded_rules = 1
-syntax include syntax/css.vim
+runtime! syntax/css.vim
 unlet b:embedded_rules
 
 syntax match jsStyledKeyword /\<styled\>/ skipwhite skipempty nextgroup=jsStyledDot,jsStyledParens
-" NOTE: This specific re-drecinition of jsFuncCall is to overwrite the current one
+" NOTE: This specific re-definition of jsFuncCall is to overwrite the current one
 syntax match jsFuncCall /styled\%(\s*(\)\@=/ contained skipwhite skipempty nextgroup=jsStyledParens contains=jsStyledKeyword
 syntax match jsStyledDot /\./ contained skipwhite skipempty nextgroup=jsStyledTag,jsStyledMethods
 syntax match jsStyledTag /\k\+/ contained nextgroup=jsStyledTemplate,jsStyledDot contains=jsTaggedTemplate

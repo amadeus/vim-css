@@ -34,4 +34,8 @@ highlight default link scssMapNoise             Noise
 highlight default link scssMapKey               Identifier
 highlight default link scssOperator             Operator
 
-let b:current_syntax = "scss"
+let b:current_syntax = 'scss'
+
+if main_syntax ==# 'scss'
+  unlet main_syntax
+endif

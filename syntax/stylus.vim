@@ -30,3 +30,7 @@ highlight default link stylusAmpersand    Special
 highlight default link stylusComment      Comment
 
 let b:current_syntax = "stylus"
+
+if main_syntax ==# 'stylus'
+  unlet main_syntax
+endif

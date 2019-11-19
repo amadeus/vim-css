@@ -292,9 +292,9 @@ highlight default link cssVariable                    Special
 
 let b:current_syntax = 'css'
 
+let &cpoptions = s:cpo_save
+unlet s:cpo_save
+
 if main_syntax ==# 'css'
   unlet main_syntax
 endif
-
-let &cpoptions = s:cpo_save
-unlet s:cpo_save
