@@ -156,7 +156,7 @@ syntax match cssValueKeyword contained /\<\%(zoom-out\|zoom-in\|wrap\|wait\|w-re
 syntax match cssValueKeyword contained /\<\%(uppercase\|unset\|underline\|transparent\|top\|thin\|textfield\|text-top\|text-bottom\|text\)\>/
 syntax match cssValueKeyword contained /\<\%(table-row-group\|table-row\|table-header-group\|table-column\|table-cell\|table-caption\|table\)\>/
 syntax match cssValueKeyword contained /\<\%(swap\|sw-resize\|super\|sub\|style\|strict\|stretch\|step-start\|step-end\)\>/
-syntax match cssValueKeyword contained /\<\%(status-bar\|static\|start\|space-between\|space-around\|solid\|small-caption\)\>/
+syntax match cssValueKeyword contained /\<\%(status-bar\|static\|start\|sticky\|space-between\|space-around\|solid\|small-caption\)\>/
 syntax match cssValueKeyword contained /\<\%(small-caps\|size\|serif\|se-resize\|scroll\|scale-down\|sans-serif\|s-resize\)\>/
 syntax match cssValueKeyword contained /\<\%(running\|run-in\|ruby-text-container\|ruby-text\|ruby-base-container\|ruby-base\)\>/
 syntax match cssValueKeyword contained /\<\%(ruby\|row-resize\|row\|right\|reverse\|repeat\|relative\|progress\)\>/
