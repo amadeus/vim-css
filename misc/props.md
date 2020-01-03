@@ -181,6 +181,7 @@ overflow-y
 overflow-x
 overflow-wrap
 overflow-style
+overflow-anchor
 overflow
 outline-width
 outline-style
