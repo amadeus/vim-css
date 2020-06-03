@@ -177,6 +177,7 @@ padding-right
 padding-left
 padding-bottom
 padding
+overscroll-behavior
 overflow-y
 overflow-x
 overflow-wrap

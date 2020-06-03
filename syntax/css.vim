@@ -120,7 +120,7 @@ syntax match cssProp contained /\<\%(perspective-origin\|perspective\)\>/
 syntax match cssProp contained /\<\%(pause-before\|pause-after\|pause\)\>/
 syntax match cssProp contained /\<\%(page-policy\|page-break-inside\|page-break-before\|page-break-after\|page\)\>/
 syntax match cssProp contained /\<\%(padding-top\|padding-right\|padding-left\|padding-bottom\|padding\)\>/
-syntax match cssProp contained /\<\%(overflow-y\|overflow-x\|overflow-wrap\|overflow-style\|overflow-anchor\|overflow\)\>/
+syntax match cssProp contained /\<\%(overscroll-behavior\|overflow-y\|overflow-x\|overflow-wrap\|overflow-style\|overflow-anchor\|overflow\)\>/
 syntax match cssProp contained /\<\%(outline-width\|outline-style\|outline-offset\|outline-color\|outline\)\>/
 syntax match cssProp contained /\<\%(order\|opacity\|offset-start\|offset-end\|offset-before\|offset-after\|object-position\|object-fit\|nav-up\|nav-right\|nav-left\)\>/
 syntax match cssProp contained /\<\%(nav-down\|move-to\|mix-blend-mode\|min-width\|min-height\|max-width\|max-lines\|max-height\|marquee-style\|marquee-speed\)\>/
