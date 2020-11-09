@@ -1,0 +1,42 @@
+finish " This is temporarily disabled while I re-look into it...
+
+if exists("b:current_syntax")
+  let s:current_syntax=b:current_syntax
+  unlet b:current_syntax
+endif
+
+let sc_import_line = search("import.*from.*styled-components", 'n')
+let sc_require_line = search("require.*styled-components", 'n')
+let la_import_line = search("import.*from.*\@linaria", 'n')
+
+if sc_import_line == 0 && sc_require_line == 0 && la_import_line == 0
+  finish
+endif
+
+let b:embedded_rules = 1
+runtime! syntax/css.vim
+unlet b:embedded_rules
+echom 'WE LIVIN THAT LIVE TS'
+
+syntax match tsStyledKeyword /\<styled\>/ skipwhite skipempty nextgroup=tsStyledDot,tsStyledParens
+" NOTE: This specific re-definition of tsFuncCall is to overwrite the current one
+syntax match tsFuncCall /styled\%(\s*(\)\@=/ contained skipwhite skipempty nextgroup=tsStyledParens contains=tsStyledKeyword
+syntax match tsStyledDot /\./ contained skipwhite skipempty nextgroup=tsStyledTag,tsStyledMethods
+syntax match tsStyledTag /\k\+/ contained nextgroup=tsStyledTemplate,tsStyledDot contains=tsTaggedTemplate
+syntax keyword tsStyledMethods attrs withConfig contained skipwhite skipempty nextgroup=tsStyledParens
+syntax region tsStyledParens contained matchgroup=tsParens start=/(/ end=/)/  contains=@tsAll extend fold nextgroup=tsStyledTemplate,tsStyledDot
+syntax match tsStyledAmpersand contained /&/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
+
+syntax match tsStyledDefinition /\k\+.extend\>`\@=/ contains=tsNoise nextgroup=tsStyledTemplate containedin=@tsExpression,@tsAll
+syntax match tsStyledDefinition /\<css\>`\@=/ contains=tsTaggedTemplate nextgroup=tsStyledTemplate containedin=@tsExpression,@tsAll
+
+syntax region tsStyledTemplate matchgroup=tsStyledTemplateTicks start=/`/ skip=/\\\(`\|$\)/ end=/`/ contained keepend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition,tsTemplateExpression,tsStyledAmpersand
+syntax region tsTemplateExpression contained matchgroup=tsTemplateBraces start=+${+ end=+}+ contains=@tsExpression keepend containedin=cssValueBlock keepend extend
+
+highlight default link tsStyledAmpersand Special
+highlight default link tsStyledTemplateTicks String
+highlight default link tsStyledDot Noise
+
+if exists("s:current_syntax")
+  let b:current_syntax=s:current_syntax
+endif

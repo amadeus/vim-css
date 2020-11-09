@@ -7,14 +7,16 @@ endif
 
 let sc_import_line = search("import.*from.*styled-components", 'n')
 let sc_require_line = search("require.*styled-components", 'n')
+let la_import_line = search("import.*from.*\@linaria", 'n')
 
-if sc_import_line == 0 && sc_require_line == 0
+if sc_import_line == 0 && sc_require_line == 0 && la_import_line == 0
   finish
 endif
 
 let b:embedded_rules = 1
 runtime! syntax/css.vim
 unlet b:embedded_rules
+echom 'WE LIVIN THAT LIVE'
 
 syntax match jsStyledKeyword /\<styled\>/ skipwhite skipempty nextgroup=jsStyledDot,jsStyledParens
 " NOTE: This specific re-definition of jsFuncCall is to overwrite the current one
