@@ -1,8 +1,3 @@
-if exists("b:current_syntax")
-  let s:current_syntax=b:current_syntax
-  unlet b:current_syntax
-endif
-
 let sc_import_line = search("import.*from.*styled-components", 'n')
 let sc_require_line = search("require.*styled-components", 'n')
 
@@ -14,6 +9,11 @@ let em_require_line = search("require.*emotion", 'n')
 
 if sc_import_line == 0 && sc_require_line == 0 && la_import_line == 0
   finish
+endif
+
+if exists("b:current_syntax")
+  let s:current_syntax=b:current_syntax
+  unlet b:current_syntax
 endif
 
 let b:embedded_rules = 1
