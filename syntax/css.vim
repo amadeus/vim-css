@@ -38,7 +38,7 @@ syntax region cssAtRuleString contained start=/'/ skip=/\\\\\|\\'/ end=/'/ conta
 syntax match cssAtRuleNoise /;/ contained
 syntax match cssPagePseudos contained /:\%(left\|right\|blank\|first\|recto\|verso\)/
 
-syntax keyword cssTagSelector a abbr acronym address applet area article aside audio b base bdo big blockquote body br button canvas caption circle cite code col colgroup dd del details dfn div dl dt em embed fieldset figcaption figure footer form g h1 h2 h3 h4 h5 h6 head header hgroup hr html i iframe img input ins isindex kbd label legend li link main map mark menu meta nav noscript  ol optgroup option p param path pre progress q rect s samp script section select small span strike strong style sub summary sup svg table tbody td template textarea tfoot th thead title tr tt u ul var video nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
+syntax match cssTagSelector /\<\%(video\|var\|ul\|u\|tt\|tr\|title\|thead\|th\|tfoot\|textarea\|template\|td\|tbody\|table\|svg\|sup\|summary\|sub\|style\|strong\|strike\|span\|small\|select\|section\|script\|samp\|s\|rect\|q\|progress\|pre\|path\|param\|p\|option\|optgroup\|ol\|noscript\|nav\|meta\|menu\|mark\|map\|main\|link\|li\|legend\|label\|kbd\|isindex\|ins\|input\|img\|iframe\|i\|html\|hr\|hgroup\|header\|head\|h6\|h5\|h4\|h3\|h2\|h1\|g\|form\|footer\|figure\|figcaption\|fieldset\|embed\|em\|dt\|dl\|div\|dfn\|details\|del\|dd\|colgroup\|col\|code\|cite\|circle\|caption\|canvas\|button\|br\|body\|blockquote\|big\|bdo\|base\|b\|audio\|aside\|article\|area\|applet\|address\|acronym\|abbr\|a\)\>/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 " object has to be pulled out and made a match or else it overrides object-fit property
 syntax match cssTagSelector /object/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
@@ -70,9 +70,9 @@ syntax match cssPseudoKeyword contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)\%(input
 syntax region cssAttributeSelector matchgroup=cssAttributeSelectorBraces start=/\[/ end=/\]/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
 if exists('b:embedded_rules')
-  syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition keepend extend fold
+  syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition keepend extend fold contained
 else
-  syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition keepend fold
+  syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition keepend fold contained
 endif
 
 syntax match  cssKeyframesDefinition /@\%(-webkit-\|-moz-\|-ms-\|-o-\)\=keyframes [a-zA-Z0-9-_]\+/ contains=cssBrowserPrefix nextgroup=cssKeyframesBlock skipwhite skipempty

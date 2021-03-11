@@ -24,13 +24,17 @@ syntax match tsStyledKeyword /\<styled\>/ skipwhite skipempty nextgroup=tsStyled
 " NOTE: This specific re-definition of tsFuncCall is to overwrite the current one
 syntax match tsFuncCall /styled\%(\s*(\)\@=/ contained skipwhite skipempty nextgroup=tsStyledParens contains=tsStyledKeyword
 syntax match tsStyledDot /\./ contained skipwhite skipempty nextgroup=tsStyledTag,tsStyledMethods
-syntax match tsStyledTag /\k\+/ contained nextgroup=tsStyledTemplate,tsStyledDot contains=tsTaggedTemplate
+syntax match tsStyledTag /\k\+/ contained nextgroup=tsStyledTemplate,tsStyledDot
 syntax keyword tsStyledMethods attrs withConfig contained skipwhite skipempty nextgroup=tsStyledParens
 syntax region tsStyledParens contained matchgroup=tsParens start=/(/ end=/)/  contains=@tsAll extend fold nextgroup=tsStyledTemplate,tsStyledDot
 syntax match tsStyledAmpersand contained /&/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
 syntax match tsStyledDefinition /\k\+.extend\>`\@=/ contains=tsNoise nextgroup=tsStyledTemplate containedin=@tsExpression,@tsAll,tsBlock,tsFuncBlock
-syntax match tsStyledDefinition /\<css\>`\@=/ contains=tsTaggedTemplate nextgroup=tsStyledTemplate containedin=@tsExpression,@tsAll,tsBlock,tsFuncBlock
+syntax match tsStyledDefinition /\<css\>`\@=/ nextgroup=tsStyledTemplate containedin=@tsExpression,@tsAll,tsBlock,tsFuncBlock extend keepend
+
+syntax match tsStyledLabelValue contained /\k\+/ nextgroup=tsStyledLabelNoise
+syntax match tsStyledLabelNoise contained /[;:]/
+syntax match tsStyledLabel contained /\<label\>:/ containedin=tsStyledTemplate contains=tsStyledLabelNoise nextgroup=tsStyledLabelValue skipwhite skipempty
 
 syntax region tsStyledTemplate matchgroup=tsStyledTemplateTicks start=/`/ skip=/\\\(`\|$\)/ end=/`/ contained keepend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition,tsTemplateExpression,tsStyledAmpersand
 syntax region tsTemplateExpression contained matchgroup=tsTemplateBraces start=+${+ end=+}+ contains=@tsExpression keepend containedin=cssValueBlock,cssDefinitionBlock keepend extend
@@ -38,6 +42,10 @@ syntax region tsTemplateExpression contained matchgroup=tsTemplateBraces start=+
 highlight default link tsStyledAmpersand Special
 highlight default link tsStyledTemplateTicks String
 highlight default link tsStyledDot Noise
+highlight default link tsStyledLabel cssProp
+highlight default link tsStyledLabelNoise Noise
+highlight default link tsStyledLabelValue cssValueKeyword
+highlight default link tsStyledDefinition tsTaggedTemplate
 
 if exists("s:current_syntax")
   let b:current_syntax=s:current_syntax
