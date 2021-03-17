@@ -32,7 +32,7 @@ syntax match tsStyledAmpersand contained /&/ nextgroup=@cssSelectors,cssDefiniti
 syntax match tsStyledDefinition /\k\+.extend\>`\@=/ contains=tsNoise nextgroup=tsStyledTemplate containedin=@tsExpression,@tsAll,tsBlock,tsFuncBlock
 syntax match tsStyledDefinition /\<css\>`\@=/ nextgroup=tsStyledTemplate containedin=@tsExpression,@tsAll,tsBlock,tsFuncBlock extend keepend
 
-syntax match tsStyledLabelValue contained /\k\+/ nextgroup=tsStyledLabelNoise
+syntax match tsStyledLabelValue contained /[0-9a-zA-Z-_@$]\+/ nextgroup=tsStyledLabelNoise
 syntax match tsStyledLabelNoise contained /[;:]/
 syntax match tsStyledLabel contained /\<label\>:/ containedin=tsStyledTemplate contains=tsStyledLabelNoise nextgroup=tsStyledLabelValue skipwhite skipempty
 
