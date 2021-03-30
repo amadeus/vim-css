@@ -48,7 +48,6 @@ syntax match cssSelectorOperator contained /\%(+\|\~\|>\)/ nextgroup=@cssSelecto
 
 syntax match cssIDSelector /#[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssIDSelectorHash
 syntax match cssIDSelectorHash /#/ contained
-syntax match cssClassSelector /\.[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot
 syntax match cssClassSelectorDot /\./ contained
 
 syntax match cssPseudoSelector /:\{1,2\}/ nextgroup=cssPseudoKeyword,cssPseudoFunction,cssPseudoFunctionType
@@ -70,9 +69,11 @@ syntax match cssPseudoKeyword contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)\%(input
 syntax region cssAttributeSelector matchgroup=cssAttributeSelectorBraces start=/\[/ end=/\]/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
 if exists('b:embedded_rules')
-  syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition keepend extend fold contained
+  syntax region cssDefinitionBloc contained matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition keepend extend fold
+  syntax match cssClassSelector contained /\.[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot
 else
   syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition keepend fold contained
+  syntax match cssClassSelector /\.[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot
 endif
 
 syntax match  cssKeyframesDefinition /@\%(-webkit-\|-moz-\|-ms-\|-o-\)\=keyframes [a-zA-Z0-9-_]\+/ contains=cssBrowserPrefix nextgroup=cssKeyframesBlock skipwhite skipempty
