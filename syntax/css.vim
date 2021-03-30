@@ -66,13 +66,16 @@ syntax match   cssPseudoFunctionTypeOperators contained /\%(+\|-\|n\)/
 
 syntax match cssPseudoKeyword contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)\%(input-placeholder\|search-cancel-button\|search-decoration\|focus-inner\|resizer\|placeholder\|inner-spin-button\|outer-spin-button\|expand\|scrollbar-track-piece\|scrollbar-track\|scrollbar-thumb\|scrollbar-button\|scrollbar-corner\|scrollbar\|full-screen\|media-controls-enclosure\)/ contains=cssBrowserPrefix nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
-syntax region cssAttributeSelector matchgroup=cssAttributeSelectorBraces start=/\[/ end=/\]/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
-
 if exists('b:embedded_rules')
-  syntax region cssDefinitionBloc contained matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition keepend extend fold
-  syntax match cssClassSelector contained /\.[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot
+  syntax region cssDefinitionBlock contained matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition keepend extend fold
 else
   syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition keepend fold
+endif
+
+syntax region cssAttributeSelector matchgroup=cssAttributeSelectorBraces start=/\[/ end=/\]/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
+if exists('b:current_syntax')
+  syntax match cssClassSelector contained /\.[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot
+else
   syntax match cssClassSelector /\.[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot
 endif
 

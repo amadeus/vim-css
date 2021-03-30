@@ -11,10 +11,11 @@ if sc_import_line == 0 && sc_require_line == 0 && la_import_line == 0 && la_requ
   finish
 endif
 
-if exists("b:current_syntax")
-  let s:current_syntax=b:current_syntax
-  unlet b:current_syntax
-endif
+" NOTE: It might've actually been a mistake to disable this?
+" if exists("b:current_syntax")
+"   let s:current_syntax=b:current_syntax
+"   unlet b:current_syntax
+" endif
 
 let b:embedded_rules = 1
 runtime! syntax/css.vim
