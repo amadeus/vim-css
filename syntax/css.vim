@@ -72,7 +72,7 @@ if exists('b:embedded_rules')
   syntax region cssDefinitionBloc contained matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition keepend extend fold
   syntax match cssClassSelector contained /\.[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot
 else
-  syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition keepend fold contained
+  syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition keepend fold
   syntax match cssClassSelector /\.[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot
 endif
 
