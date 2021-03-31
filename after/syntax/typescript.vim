@@ -34,11 +34,11 @@ syntax match tsStyledDefinition /\k\+.extend\>`\@=/ contains=tsNoise nextgroup=t
 syntax match tsStyledDefinition /\<css\>`\@=/ nextgroup=tsStyledTemplate containedin=@tsExpression,@tsAll,tsBlock,tsFuncBlock extend keepend
 
 syntax match tsStyledLabelValue contained /[0-9a-zA-Z-_@$]\+/ nextgroup=tsStyledLabelNoise
-syntax match tsStyledLabelNoise contained /[;:]/
+syntax match tsStyledLabeLNoise contained /[;:]/
 syntax match tsStyledLabel contained /\<label\>:/ containedin=tsStyledTemplate contains=tsStyledLabelNoise nextgroup=tsStyledLabelValue skipwhite skipempty
 
 syntax region tsStyledTemplate matchgroup=tsStyledTemplateTicks start=/`/ skip=/\\\(`\|$\)/ end=/`/ contained keepend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition,tsTemplateExpression,tsStyledAmpersand
-syntax region tsTemplateExpression contained matchgroup=tsTemplateBraces start=+${+ end=+}+ contains=@tsExpression keepend containedin=cssValueBlock,cssDefinitionBlock keepend extend
+syntax region tsTemplateExpression contained matchgroup=tsTemplateBraces start=+${+ end=+}+ contains=@tsExpression keepend containedin=cssValueBlock,cssDefinitionBlock nextgroup=cssDefinitionBlock skipwhite skipempty keepend extend
 
 highlight default link tsStyledAmpersand Special
 highlight default link tsStyledTemplateTicks String

@@ -34,7 +34,7 @@ syntax match jsStyledDefinition /\k\+.extend\>`\@=/ contains=jsNoise nextgroup=j
 syntax match jsStyledDefinition /\<css\>`\@=/ contains=jsTaggedTemplate nextgroup=jsStyledTemplate containedin=@tsExpression,@tsAll,tsBlock,tsFuncBlock
 
 syntax region jsStyledTemplate matchgroup=jsStyledTemplateTicks start=/`/ skip=/\\\(`\|$\)/ end=/`/ contained keepend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition,jsTemplateExpression,jsStyledAmpersand
-syntax region jsTemplateExpression contained matchgroup=jsTemplateBraces start=+${+ end=+}+ contains=@jsExpression keepend containedin=cssValueBlock,cssDefinitionBlock keepend extend
+syntax region jsTemplateExpression contained matchgroup=jsTemplateBraces start=+${+ end=+}+ contains=@jsExpression keepend containedin=cssValueBlock,cssDefinitionBlock nextgroup=cssDefinitionBlock skipwhite skipempty keepend extend
 
 highlight default link jsStyledAmpersand Special
 highlight default link jsStyledTemplateTicks String
