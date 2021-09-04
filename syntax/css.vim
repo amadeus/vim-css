@@ -103,7 +103,7 @@ syntax match cssVariableDefinition    contained /--[a-zA-Z0-9-_]\+/
 syntax match cssProp contained /\<\%(zoom\|z-index\|writing-mode\|word-wrap\|word-spacing\|word-break\|will-change\|width\)\>/
 syntax match cssProp contained /\<\%(widows\|white-space\|volume\|voice-volume\|top\|text-wrap\|text-underline-position\|visibility\|vertical-align\|user-select\)\>/
 syntax match cssProp contained /\<\%(voice-stress\|voice-rate\|voice-range\|voice-pitch\|voice-family\|voice-duration\|voice-balance\|quotes\|presentation-level\)\>/
-syntax match cssProp contained /\<\%(unicode-range\|unicode-bidi\|tap-highlight-color\|table-layout\|tab-size\|string-set\|string-set\|stress\|src\)\>/
+syntax match cssProp contained /\<\%(unicode-range\|unicode-bidi\|tap-highlight-color\|table-layout\|tab-size\|string-set\|stress\|src\)\>/
 syntax match cssProp contained /\<\%(transition-timing-function\|transition-property\|transition-duration\|transition-delay\|transition\)\>/
 syntax match cssProp contained /\<\%(transform-style\|transform-origin\|transform-box\|transform\)\>/
 syntax match cssProp contained /\<\%(text-rendering\|text-overflow\|text-orientation\|text-justify\|text-indent\|text-combine-upright\)\>/
@@ -113,7 +113,7 @@ syntax match cssProp contained /\<\%(text-align-last\|text-align-all\|text-align
 syntax match cssProp contained /\<\%(stroke-width\|stroke-opacity\|stroke-miterlimit\|stroke-linejoin\|stroke-linecap\|stroke-dashoffset\|stroke-dashcorner\|stroke-dasharray\|stroke-dashadjust\|stroke-alignment\|stroke\)\>/
 syntax match cssProp contained /\<\%(speech-rate\|size\|running\|ruby-position\|ruby-merge\|ruby-align\|right\|richness\|rest-before\|rest-after\|rest\|resize\)\>/
 syntax match cssProp contained /\<\%(speak-punctuation\|speak-numeral\|speak-header\|speak-as\|speak\)\>/
-syntax match cssProp contained /\<\%(scroll-snap-padding-top\|scroll-snap-padding-right\|scroll-snap-padding-left\|scroll-snap-padding-inline-start\|scroll-snap-padding-inline-end\|scroll-snap-padding-inline\|scroll-snap-padding-bottom\|scroll-snap-padding-block-start\|scroll-snap-padding-block-end\|scroll-snap-padding-block\|scroll-snap-padding\|scroll-snap-padding\)\>/
+syntax match cssProp contained /\<\%(scroll-snap-padding-top\|scroll-snap-padding-right\|scroll-snap-padding-left\|scroll-snap-padding-inline-start\|scroll-snap-padding-inline-end\|scroll-snap-padding-inline\|scroll-snap-padding-bottom\|scroll-snap-padding-block-start\|scroll-snap-padding-block-end\|scroll-snap-padding-block\|scroll-snap-padding\)\>/
 syntax match cssProp contained /\<\%(scroll-snap-margin-top\|scroll-snap-margin-right\|scroll-snap-margin-left\|scroll-snap-margin-inline-start\|scroll-snap-margin-inline-end\|scroll-snap-margin-inline\|scroll-snap-margin-bottom\|scroll-snap-margin-block-start\|scroll-snap-margin-block-end\|scroll-snap-margin-block\|scroll-snap-margin\)\>/
 syntax match cssProp contained /\<\%(scroll-behavior\|text-transform\|text-spacing\|text-space-trim\|text-space-collapse\|text-size-adjust\|text-shadow\)\>/
 syntax match cssProp contained /\<\%(rotation-point\|rotation\|scrollbar-width\|scrollbar-color\)\>/
@@ -152,7 +152,7 @@ syntax match cssProp contained /\<\%(clip-rule\|clip-path\|clip\)\>/
 syntax match cssProp contained /\<\%(caret-shape\|caret-color\|caret-animation\|caret\)\>/
 syntax match cssProp contained /\<\%(box-suppress\|box-snap\|box-sizing\|box-shadow\|box-decoration-break\|bottom\|bookmark-state\|bookmark-level\|bookmark-label\)\>/
 syntax match cssProp contained /\<\%(border-width\|border-top-width\|border-top-style\|border-top-right-radius\|border-top-left-radius\|border-top-color\|border-top\|border-style\|border-spacing\|border-right-width\|border-right-style\|border-right-color\|border-right\|border-radius\|border-left-width\|border-left-style\|border-left-color\|border-left\|border-image-width\|border-image-source\|border-image-slice\|border-image-repeat\|border-image-outset\|border-image\|border-color\|border-collapse\|border-boundary\|border-bottom-width\|border-bottom-style\|border-bottom-right-radius\|border-bottom-left-radius\|border-bottom-color\|border-bottom\|border\)\>/
-syntax match cssProp contained /\<\%(baseline-shift\|backface-visibility\|azimuth\|appearance\|all\|alignment-baseline\|align-self\|align-items\|align-content\)\>/
+syntax match cssProp contained /\<\%(baseline-shift\|backface-visibility\|backdrop-filter\|azimuth\|appearance\|all\|alignment-baseline\|align-self\|align-items\|align-content\)\>/
 syntax match cssProp contained /\<\%(background-size\|background-repeat\|background-position\|background-origin\|background-image\|background-color\|background-clip\|background-blend-mode\|background-attachment\|background\)\>/
 syntax match cssProp contained /\<\%(animation-timing-function\|animation-play-state\|animation-name\|animation-iteration-count\|animation-fill-mode\|animation-duration\|animation-direction\|animation-delay\|animation\)\>/
 

@@ -96,7 +96,6 @@ stroke-dashadjust
 stroke-alignment
 stroke
 string-set
-string-set
 stress
 src
 speech-rate
@@ -123,7 +122,6 @@ scroll-snap-padding-bottom
 scroll-snap-padding-block-start
 scroll-snap-padding-block-end
 scroll-snap-padding-block
-scroll-snap-padding
 scroll-snap-padding
 scroll-snap-margin-top
 scroll-snap-margin-right
@@ -434,6 +432,7 @@ background-blend-mode
 background-attachment
 background
 backface-visibility
+backdrop-filter
 azimuth
 appearance
 animation-timing-function
