@@ -296,6 +296,7 @@ grid-auto-columns
 grid-area
 grid
 glyph-orientation-vertical
+gap
 footnote-policy
 footnote-display
 font-weight

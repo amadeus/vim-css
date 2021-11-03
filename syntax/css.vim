@@ -138,7 +138,7 @@ syntax match cssProp contained /\<\%(list-style-type\|list-style-position\|list-
 syntax match cssProp contained /\<\%(justify-self\|justify-items\|justify-content\|isolation\|interpolation-mode\|image-resolution\|image-rendering\|image-orientation\)\>/
 syntax match cssProp contained /\<\%(initial-letter-wrap\|initial-letter-align\|initial-letter\)\>/
 syntax match cssProp contained /\<\%(hyphens\|hyphenate-limit-zone\|hyphenate-limit-lines\|hyphenate-limit-last\|hyphenate-limit-chars\|hyphenate-character\)\>/
-syntax match cssProp contained /\<\%(height\|hanging-punctuation\|glyph-orientation-vertical\|footnote-policy\|footnote-display\|flood-opacity\|flood-color\|filter\)\>/
+syntax match cssProp contained /\<\%(height\|hanging-punctuation\|glyph-orientation-vertical\|gap\|footnote-policy\|footnote-display\|flood-opacity\|flood-color\|filter\)\>/
 syntax match cssProp contained /\<\%(grid-template-rows\|grid-template-columns\|grid-template-areas\|grid-template\|grid-row-start\|grid-row-gap\|grid-row-end\|grid-row\|grid-column-start\|grid-column-gap\|grid-column-end\|grid-column\|grid-gap\|grid-auto-rows\|grid-auto-flow\|grid-auto-columns\|grid-area\|grid\)\>/
 syntax match cssProp contained /\<\%(font-weight\|font-variant-position\|font-variant-numeric\|font-variant-ligatures\|font-variant-east-asian\|font-variant-caps\|font-variant-alternates\|font-variant\|font-synthesis\|font-style\|font-stretch\|font-smoothing\|font-size-adjust\|font-size\|font-language-override\|font-kerning\|font-feature-settings\|font-family\|font-display\|font\)\>/
 syntax match cssProp contained /\<\%(flow-into\|flow-from\|flow\)\>/
