@@ -49,6 +49,7 @@ syntax match cssSelectorOperator contained /\%(+\|\~\|>\)/ nextgroup=@cssSelecto
 syntax match cssIDSelector /#[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssIDSelectorHash
 syntax match cssIDSelectorHash /#/ contained
 syntax match cssClassSelectorDot /\./ contained
+syntax match cssClassSelectorEscapeChar /\\/ contained
 
 syntax match cssPseudoSelector /:\{1,2\}/ nextgroup=cssPseudoKeyword,cssPseudoFunction,cssPseudoFunctionType
 syntax match cssPseudoKeyword contained /\<active\|after\|before\|checked\|disabled\|empty\|first-child\|first-letter\|first-line\|first-of-type\|focus-within\|focus\|hover\|input-placeholder\|last-child\|last-line\|last-of-type\|left\|link\|only-child\|only-of-type\|placeholder\|right\|selection\|visited\|scrollbar-track-piece\|scrollbar-button\|scrollbar-corner\|scrollbar\>/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
@@ -74,9 +75,9 @@ endif
 
 syntax region cssAttributeSelector matchgroup=cssAttributeSelectorBraces start=/\[/ end=/\]/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 if exists('b:current_syntax')
-  syntax match cssClassSelector contained /\.[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot
+  syntax match cssClassSelector contained /\.[_a-zA-Z]\+[_a-zA-Z0-9-\\\/]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot
 else
-  syntax match cssClassSelector /\.[_a-zA-Z]\+[_a-zA-Z0-9-]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot
+  syntax match cssClassSelector /\.[_a-zA-Z]\+[_a-zA-Z0-9-\\\/]*/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssClassSelectorDot,cssClassSelectorEscapeChar
 endif
 
 syntax match  cssKeyframesDefinition /@\%(-webkit-\|-moz-\|-ms-\|-o-\)\=keyframes [a-zA-Z0-9-_]\+/ contains=cssBrowserPrefix nextgroup=cssKeyframesBlock skipwhite skipempty
@@ -152,7 +153,7 @@ syntax match cssProp contained /\<\%(clip-rule\|clip-path\|clip\)\>/
 syntax match cssProp contained /\<\%(caret-shape\|caret-color\|caret-animation\|caret\)\>/
 syntax match cssProp contained /\<\%(box-suppress\|box-snap\|box-sizing\|box-shadow\|box-decoration-break\|bottom\|bookmark-state\|bookmark-level\|bookmark-label\)\>/
 syntax match cssProp contained /\<\%(border-width\|border-top-width\|border-top-style\|border-top-right-radius\|border-top-left-radius\|border-top-color\|border-top\|border-style\|border-spacing\|border-right-width\|border-right-style\|border-right-color\|border-right\|border-radius\|border-left-width\|border-left-style\|border-left-color\|border-left\|border-image-width\|border-image-source\|border-image-slice\|border-image-repeat\|border-image-outset\|border-image\|border-color\|border-collapse\|border-boundary\|border-bottom-width\|border-bottom-style\|border-bottom-right-radius\|border-bottom-left-radius\|border-bottom-color\|border-bottom\|border\)\>/
-syntax match cssProp contained /\<\%(baseline-shift\|backface-visibility\|backdrop-filter\|azimuth\|appearance\|all\|alignment-baseline\|align-self\|align-items\|align-content\)\>/
+syntax match cssProp contained /\<\%(baseline-shift\|backface-visibility\|backdrop-filter\|azimuth\|aspect-ratio\|appearance\|all\|alignment-baseline\|align-self\|align-items\|align-content\)\>/
 syntax match cssProp contained /\<\%(background-size\|background-repeat\|background-position\|background-origin\|background-image\|background-color\|background-clip\|background-blend-mode\|background-attachment\|background\)\>/
 syntax match cssProp contained /\<\%(animation-timing-function\|animation-play-state\|animation-name\|animation-iteration-count\|animation-fill-mode\|animation-duration\|animation-direction\|animation-delay\|animation\)\>/
 
@@ -293,6 +294,7 @@ highlight default link cssFuncName                    Function
 highlight default link cssFuncDelimiters              Operator
 highlight default link cssVariableDefinition          Special
 highlight default link cssVariable                    Special
+highlight default link cssClassSelectorEscapeChar     Special
 
 let b:current_syntax = 'css'
 
