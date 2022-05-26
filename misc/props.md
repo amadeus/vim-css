@@ -435,6 +435,7 @@ background
 backface-visibility
 backdrop-filter
 azimuth
+aspect-ratio
 appearance
 animation-timing-function
 animation-play-state
