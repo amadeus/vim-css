@@ -212,14 +212,16 @@ syntax match cssUnits contained /\%(#\|%\|mm\|cm\|in\|pt\|pc\|em\|ex\|px\|rem\|d
 
 syntax match cssVariable contained /--[a-zA-Z0-9-_]\+/
 
-syntax region cssFunction        contained  start=/\<[a-zA-Z0-9-]\+\>\+(/ end=/)/ contains=cssFuncName extend keepend
-syntax match cssFuncName         contained  /\<[a-zA-Z0-9-]\+\>(\@=/ nextgroup=cssFuncArgs,cssFuncUrlArgs,cssFuncVar,cssFuncAttrArgs,cssFuncEffectArgs,cssFuncCalcArgs
-syntax region cssFuncArgs        contained matchgroup=cssFuncDelimiters start=/(/ end=/)/ contains=cssFunction,cssString,cssNumber,cssHexColor,cssColor,cssOperators,cssValueNoise
-syntax region cssFuncUrlArgs     contained matchgroup=cssFuncDelimiters start=/\%(url\)\@<=(/ end=/)/ contains=cssString
-syntax region cssFuncAttrArgs    contained matchgroup=cssFuncDelimiters start=/\%(attr\)\@<=(/ end=/)/ contains=cssAttrProp
+syntax region cssCalcPrens contained start=/(/ end=/)/ matchgroup=cssFuncDelimiters contains=cssNumber,cssOperators,cssFuncVar,cssFuncName,cssCalcPrens extend keepend
+
+" syntax region cssFunction        contained start=/\<[a-zA-Z0-9-]\+\>\+(/ end=/)/ contains=cssFuncName keepend
+syntax match cssFuncName         /\<[a-zA-Z0-9-]\+\>(\@=/ nextgroup=cssFuncArgs,cssFuncUrlArgs,cssFuncVar,cssFuncAttrArgs,cssFuncEffectArgs,cssFuncCalcArgs
+syntax region cssFuncArgs        contained matchgroup=cssFuncDelimiters start=/(/ end=/)/ contains=cssFunction,cssString,cssNumber,cssHexColor,cssColor,cssOperators,cssValueNoise,cssFuncCalcArgs,cssFuncName extend keepend
+syntax region cssFuncUrlArgs     contained matchgroup=cssFuncDelimiters start=/\%(url\)\@<=(/ end=/)/ contains=cssString extend keepend
+syntax region cssFuncAttrArgs    contained matchgroup=cssFuncDelimiters start=/\%(attr\)\@<=(/ end=/)/ contains=cssAttrProp extend keepend
 syntax region cssFuncEffectArgs  contained matchgroup=cssFuncDelimiters start=/\%(blur\|brightness\|contrast\|drop-shadow\|grayscale\|hue-rotate\|invert\|opacity\|saturate\|sepia\)\@<=(/ end=/)/ contains=cssNumber,cssColor
-syntax region cssFuncCalcArgs    contained matchgroup=cssFuncDelimiters start=/\%(calc\)\@<=(/ end=/)/ contains=cssNumber,cssOperators
-syntax region cssFuncVar         contained matchgroup=cssFuncDelimiters start=/\%(var\)\@<=(/ end=/)/ contains=cssVariable,@cssValues,cssValueNoise
+syntax region cssFuncCalcArgs    contained matchgroup=cssFuncDelimiters start=/\%(calc\)\@<=(/ end=/)/ contains=cssNumber,cssOperators,cssFuncVar,cssFuncName,cssCalcPrens extend keepend
+syntax region cssFuncVar         contained matchgroup=cssFuncDelimiters start=/\%(var\)\@<=(/ end=/)/ contains=cssVariable,@cssValues,cssValueNoise,cssFuncVar extend keepend
 
 syntax match  cssAttrProp     contained /\k\+/ skipwhite skipempty nextgroup=cssAttrTypes,cssAttrComma
 syntax match  cssAttrTypes    contained /\%(string\|integer\|color\|url\|integer\|number\|length\|angle\|time\|frequency\|em\|ex\|px\|rem\|vw\|vh\|vmin\|vmax\|mm\|cm\|in\|pt\|pc\|deg\|grad\|rad\|ms\|s\|Hz\|kHz\|%\)/ skipwhite skipempty nextgroup=cssAttrComma
@@ -228,7 +230,7 @@ syntax match  cssOperators    contained /\%(+\|-\|*\|\/\)/
 
 syntax cluster cssSelectors contains=cssTagSelector,cssIDSelector,cssSelectorOperator,cssSelectorSeparator,cssStarSelector,cssClassSelector,cssPseudoSelector,cssAttributeSelector,cssPseudoFunction
 syntax cluster cssRules contains=cssPropDefinition
-syntax cluster cssValues contains=cssFunction,cssString,cssNumber,cssHexColor,cssImportant,cssColor,cssValueKeyword,cssValueNoise
+syntax cluster cssValues contains=cssFunction,cssString,cssNumber,cssHexColor,cssImportant,cssColor,cssValueKeyword,cssValueNoise,cssFuncName
 
 syntax region cssComment start=/\/\*/ end=/\*\// containedin=ALLBUT,cssComment keepend extend
 
@@ -289,6 +291,7 @@ highlight default link cssAttrComma                   Noise
 highlight default link cssAttrTypes                   Operator
 highlight default link cssAttrProp                    Constant
 highlight default link cssOperators                   Operator
+highlight default link cssCalcPrens                   Operator
 highlight default link cssBracketError                Error
 highlight default link cssFuncName                    Function
 highlight default link cssFuncDelimiters              Operator
