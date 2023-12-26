@@ -217,12 +217,14 @@ syntax region cssCalcPrens contained start=/(/ end=/)/ matchgroup=cssFuncDelimit
 
 " syntax region cssFunction        contained start=/\<[a-zA-Z0-9-]\+\>\+(/ end=/)/ contains=cssFuncName keepend
 syntax match cssFuncName         /\<[a-zA-Z0-9-]\+\>(\@=/ nextgroup=cssFuncArgs,cssFuncUrlArgs,cssFuncVar,cssFuncAttrArgs,cssFuncEffectArgs,cssFuncCalcArgs
-syntax region cssFuncArgs        contained matchgroup=cssFuncDelimiters start=/(/ end=/)/ contains=cssFunction,cssString,cssNumber,cssHexColor,cssColor,cssOperators,cssValueNoise,cssFuncCalcArgs,cssFuncName extend keepend
+syntax region cssFuncArgs        contained matchgroup=cssFuncDelimiters start=/(/ end=/)/ contains=cssFunction,cssString,cssNumber,cssHexColor,cssColor,cssOperators,cssValueNoise,cssFuncCalcArgs,cssFuncName,cssSafeAreaInsets extend keepend
 syntax region cssFuncUrlArgs     contained matchgroup=cssFuncDelimiters start=/\%(url\)\@<=(/ end=/)/ contains=cssString extend keepend
 syntax region cssFuncAttrArgs    contained matchgroup=cssFuncDelimiters start=/\%(attr\)\@<=(/ end=/)/ contains=cssAttrProp extend keepend
 syntax region cssFuncEffectArgs  contained matchgroup=cssFuncDelimiters start=/\%(blur\|brightness\|contrast\|drop-shadow\|grayscale\|hue-rotate\|invert\|opacity\|saturate\|sepia\)\@<=(/ end=/)/ contains=cssNumber,cssColor
 syntax region cssFuncCalcArgs    contained matchgroup=cssFuncDelimiters start=/\%(calc\)\@<=(/ end=/)/ contains=cssNumber,cssOperators,cssFuncVar,cssFuncName,cssCalcPrens extend keepend
 syntax region cssFuncVar         contained matchgroup=cssFuncDelimiters start=/\%(var\)\@<=(/ end=/)/ contains=cssVariable,@cssValues,cssValueNoise,cssFuncVar extend keepend
+
+syntax match cssSafeAreaInsets contained /safe-area-inset-\(left\|right\|top\|bottom\)/
 
 syntax match  cssAttrProp     contained /\k\+/ skipwhite skipempty nextgroup=cssAttrTypes,cssAttrComma
 syntax match  cssAttrTypes    contained /\%(string\|integer\|color\|url\|integer\|number\|length\|angle\|time\|frequency\|em\|ex\|px\|rem\|vw\|vh\|vmin\|vmax\|mm\|cm\|in\|pt\|pc\|deg\|grad\|rad\|ms\|s\|Hz\|kHz\|%\)/ skipwhite skipempty nextgroup=cssAttrComma
@@ -298,6 +300,7 @@ highlight default link cssFuncName                    Function
 highlight default link cssFuncDelimiters              Operator
 highlight default link cssVariableDefinition          Special
 highlight default link cssVariable                    Special
+highlight default link cssSafeAreaInsets              Special
 highlight default link cssClassSelectorEscapeChar     Special
 
 let b:current_syntax = 'css'
