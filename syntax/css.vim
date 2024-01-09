@@ -65,7 +65,7 @@ syntax keyword cssPseudoFunctionTypeNumbers   contained odd even
 syntax match   cssPseudoFunctionTypeNumbers   contained /\d/
 syntax match   cssPseudoFunctionTypeOperators contained /\%(+\|-\|n\)/
 
-syntax match cssPseudoKeyword contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)\%(input-placeholder\|search-cancel-button\|search-decoration\|focus-inner\|resizer\|placeholder\|inner-spin-button\|outer-spin-button\|expand\|scrollbar-track-piece\|scrollbar-track\|scrollbar-thumb\|scrollbar-button\|scrollbar-corner\|scrollbar\|full-screen\|media-controls-enclosure\)/ contains=cssBrowserPrefix nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
+syntax match cssPseudoKeyword contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)\%(input-placeholder\|search-cancel-button\|search-decoration\|focus-inner\|resizer\|placeholder\|inner-spin-button\|outer-spin-button\|expand\|scrollbar-track-piece\|scrollbar-track\|scrollbar-thumb\|scrollbar-button\|scrollbar-corner\|scrollbar\|full-screen\|media-controls-enclosure\|file-upload-button\)/ contains=cssBrowserPrefix nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
 if exists('b:embedded_rules')
   syntax region cssDefinitionBlock contained matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition keepend extend fold
