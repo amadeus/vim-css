@@ -28,7 +28,7 @@ setlocal iskeyword+=_
 " load this CSS plugin - I need to research more why the bug exists - perhaps
 " this is a better workaround
 syntax match cssAttr /\<cssAttrPolyfill\>/ contained
-syntax match cssBracketError /}\|]/ containedin=ALLBUT,cssComment
+syntax match cssBracketError /}\|]/ containedin=ALLBUT,cssComment,cssGridNamedColumns
 syntax match cssBrowserPrefix contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)/ nextgroup=cssProp
 syntax match cssValueNoise contained /,/
 
@@ -215,9 +215,12 @@ syntax match cssVariable contained /--[a-zA-Z0-9-_]\+/
 
 syntax region cssCalcPrens contained start=/(/ end=/)/ matchgroup=cssFuncDelimiters contains=cssNumber,cssOperators,cssFuncVar,cssFuncName,cssCalcPrens extend keepend
 
+syntax region cssGridNamedColumns matchgroup=cssGridNamedColumnBrackets contained start=/\[/ end=/\]/  contains=cssColumnName extend keepend
+syntax match cssColumnName contained /\<[a-zA-Z0-9-]\+\>/ extend
+
 " syntax region cssFunction        contained start=/\<[a-zA-Z0-9-]\+\>\+(/ end=/)/ contains=cssFuncName keepend
 syntax match cssFuncName         /\<[a-zA-Z0-9-]\+\>(\@=/ nextgroup=cssFuncArgs,cssFuncUrlArgs,cssFuncVar,cssFuncAttrArgs,cssFuncEffectArgs,cssFuncCalcArgs
-syntax region cssFuncArgs        contained matchgroup=cssFuncDelimiters start=/(/ end=/)/ contains=cssFunction,cssString,cssNumber,cssHexColor,cssColor,cssOperators,cssValueNoise,cssFuncCalcArgs,cssFuncName,cssSafeAreaInsets extend keepend
+syntax region cssFuncArgs        contained matchgroup=cssFuncDelimiters start=/(/ end=/)/ contains=cssFunction,cssString,cssNumber,cssHexColor,cssColor,cssOperators,cssValueNoise,cssFuncCalcArgs,cssFuncName,cssSafeAreaInsets,cssFuncArgs extend keepend
 syntax region cssFuncUrlArgs     contained matchgroup=cssFuncDelimiters start=/\%(url\)\@<=(/ end=/)/ contains=cssString extend keepend
 syntax region cssFuncAttrArgs    contained matchgroup=cssFuncDelimiters start=/\%(attr\)\@<=(/ end=/)/ contains=cssAttrProp extend keepend
 syntax region cssFuncEffectArgs  contained matchgroup=cssFuncDelimiters start=/\%(blur\|brightness\|contrast\|drop-shadow\|grayscale\|hue-rotate\|invert\|opacity\|saturate\|sepia\)\@<=(/ end=/)/ contains=cssNumber,cssColor
@@ -233,7 +236,7 @@ syntax match  cssOperators    contained /\%(+\|-\|*\|\/\)/
 
 syntax cluster cssSelectors contains=cssTagSelector,cssIDSelector,cssSelectorOperator,cssSelectorSeparator,cssStarSelector,cssClassSelector,cssPseudoSelector,cssAttributeSelector,cssPseudoFunction
 syntax cluster cssRules contains=cssPropDefinition
-syntax cluster cssValues contains=cssFunction,cssString,cssNumber,cssHexColor,cssImportant,cssColor,cssValueKeyword,cssValueNoise,cssFuncName
+syntax cluster cssValues contains=cssFunction,cssString,cssNumber,cssHexColor,cssImportant,cssColor,cssValueKeyword,cssValueNoise,cssFuncName,cssGridNamedColumns
 
 syntax region cssComment start=/\/\*/ end=/\*\// containedin=ALLBUT,cssComment keepend extend
 
@@ -302,6 +305,8 @@ highlight default link cssVariableDefinition          Special
 highlight default link cssVariable                    Special
 highlight default link cssSafeAreaInsets              Special
 highlight default link cssClassSelectorEscapeChar     Special
+highlight default link cssGridNamedColumnBrackets     Operator
+highlight default link cssColumnName                  Special
 
 let b:current_syntax = 'css'
 
