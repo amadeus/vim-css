@@ -17,9 +17,7 @@ endif
 "   unlet b:current_syntax
 " endif
 
-let b:embedded_rules = 1
 runtime! syntax/css.vim
-unlet b:embedded_rules
 
 syntax match jsStyledKeyword /\<styled\>/ skipwhite skipempty nextgroup=jsStyledDot,jsStyledParens
 " NOTE: This specific re-definition of jsFuncCall is to overwrite the current one

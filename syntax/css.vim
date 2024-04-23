@@ -11,10 +11,6 @@ if exists('b:current_syntax') && b:current_syntax ==# 'css'
   finish
 endif
 
-if !exists('b:embedded_rules') && main_syntax !=# 'css'
-  syntax clear
-endif
-
 let s:cpo_save = &cpoptions
 set cpoptions&vim
 
@@ -32,7 +28,8 @@ syntax match cssBracketError /}\|]/ containedin=ALLBUT,cssComment,cssGridNamedCo
 syntax match cssBrowserPrefix contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)/ nextgroup=cssProp
 syntax match cssValueNoise contained /,/
 
-syntax match cssAtRule /@\(media\|page\|import\|charset\|namespace\)/ skipwhite skipempty nextgroup=cssAtRuleString
+syntax match cssAtRule /@\(media\|\|page\|import\|charset\|namespace\)/ skipwhite skipempty nextgroup=cssAtRuleString
+
 syntax region cssAtRuleString contained start=/"/ skip=/\\\\\|\\"/ end=/"/ contained skipwhite skipempty oneline nextgroup=cssAtRuleNoise
 syntax region cssAtRuleString contained start=/'/ skip=/\\\\\|\\'/ end=/'/ contained skipwhite skipempty oneline nextgroup=cssAtRuleNoise
 syntax match cssAtRuleNoise /;/ contained
@@ -52,7 +49,7 @@ syntax match cssClassSelectorDot /\./ contained
 syntax match cssClassSelectorEscapeChar /\\/ contained
 
 syntax match cssPseudoSelector /:\{1,2\}/ nextgroup=cssPseudoKeyword,cssPseudoFunction,cssPseudoFunctionType
-syntax match cssPseudoKeyword contained /\<active\|after\|before\|checked\|disabled\|empty\|first-child\|first-letter\|first-line\|first-of-type\|focus-within\|focus\|hover\|input-placeholder\|last-child\|last-line\|last-of-type\|left\|link\|only-child\|only-of-type\|placeholder\|right\|selection\|visited\|scrollbar-track-piece\|scrollbar-button\|scrollbar-corner\|scrollbar\>/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
+syntax match cssPseudoKeyword contained /\<active\|after\|before\|checked\|disabled\|empty\|first-child\|first-letter\|first-line\|first-of-type\|focus-within\|focus\|hover\|input-placeholder\|last-child\|last-line\|last-of-type\|left\|link\|only-child\|only-of-type\|placeholder\|right\|selection\|visited\|scrollbar-track-piece\|scrollbar-button\|scrollbar-corner\|scrollbar\|root\>/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
 syntax region cssPseudoFunction     contained start=/[a-zA-Z0-9-_]\+(/ end=/)/ keepend extend nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty contains=cssPseudoFunctionNot,cssPseudoFunctionDir,cssPseudoFunctionLang,cssPseudoFunctionType
 syntax region cssPseudoFunctionNot  contained matchgroup=cssFunctionDelimiters start=/not(/ end=/)/ contains=@cssSelectors
@@ -67,11 +64,7 @@ syntax match   cssPseudoFunctionTypeOperators contained /\%(+\|-\|n\)/
 
 syntax match cssPseudoKeyword contained /\%(-webkit-\|-moz-\|-ms-\|-o-\)\%(input-placeholder\|search-cancel-button\|search-decoration\|focus-inner\|resizer\|placeholder\|inner-spin-button\|outer-spin-button\|expand\|scrollbar-track-piece\|scrollbar-track\|scrollbar-thumb\|scrollbar-button\|scrollbar-corner\|scrollbar\|full-screen\|media-controls-enclosure\|file-upload-button\)/ contains=cssBrowserPrefix nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 
-if exists('b:embedded_rules')
-  syntax region cssDefinitionBlock contained matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition keepend extend fold
-else
-  syntax region cssDefinitionBlock matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition keepend fold
-endif
+syntax region cssDefinitionBlock contained matchgroup=cssDefinitionBraces start=/{/ end=/}/ extend contains=cssPropDefinition,@cssSelectors,cssMediaDefinition keepend extend fold
 
 syntax region cssAttributeSelector matchgroup=cssAttributeSelectorBraces start=/\[/ end=/\]/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 if exists('b:current_syntax')
@@ -218,6 +211,10 @@ syntax region cssCalcPrens contained start=/(/ end=/)/ matchgroup=cssFuncDelimit
 syntax region cssGridNamedColumns matchgroup=cssGridNamedColumnBrackets contained start=/\[/ end=/\]/  contains=cssColumnName extend keepend
 syntax match cssColumnName contained /\<[a-zA-Z0-9-]\+\>/ extend
 
+syntax match cssLayerComma contained /,/ skipwhite skipempty nextgroup=cssLayerName
+syntax match cssLayerName  contained /\k\+/ skipwhite skipempty nextgroup=cssAttrTypes,cssLayerComma,cssAtRuleNoise,cssDefinitionBlock
+syntax match cssLayer /@layer/ skipwhite skipempty nextgroup=cssLayerName,cssLayerComma,cssDefinitionBlock
+
 " syntax region cssFunction        contained start=/\<[a-zA-Z0-9-]\+\>\+(/ end=/)/ contains=cssFuncName keepend
 syntax match cssFuncName         /\<[a-zA-Z0-9-]\+\>(\@=/ nextgroup=cssFuncArgs,cssFuncUrlArgs,cssFuncVar,cssFuncAttrArgs,cssFuncEffectArgs,cssFuncCalcArgs
 syntax region cssFuncArgs        contained matchgroup=cssFuncDelimiters start=/(/ end=/)/ contains=cssFunction,cssString,cssNumber,cssHexColor,cssColor,cssOperators,cssValueNoise,cssFuncCalcArgs,cssFuncName,cssSafeAreaInsets,cssFuncArgs extend keepend
@@ -234,7 +231,7 @@ syntax match  cssAttrTypes    contained /\%(string\|integer\|color\|url\|integer
 syntax match  cssAttrComma    contained /,/ skipwhite skipempty nextgroup=cssString,cssNumber
 syntax match  cssOperators    contained /\%(+\|-\|*\|\/\)/
 
-syntax cluster cssSelectors contains=cssTagSelector,cssIDSelector,cssSelectorOperator,cssSelectorSeparator,cssStarSelector,cssClassSelector,cssPseudoSelector,cssAttributeSelector,cssPseudoFunction
+syntax cluster cssSelectors contains=cssTagSelector,cssIDSelector,cssSelectorOperator,cssSelectorSeparator,cssStarSelector,cssClassSelector,cssPseudoSelector,cssAttributeSelector,cssPseudoFunction,cssPseudoSelector
 syntax cluster cssRules contains=cssPropDefinition
 syntax cluster cssValues contains=cssFunction,cssString,cssNumber,cssHexColor,cssImportant,cssColor,cssValueKeyword,cssValueNoise,cssFuncName,cssGridNamedColumns
 
@@ -259,6 +256,7 @@ highlight default link cssAtRulePage                  PreProc
 highlight default link cssKeyframesDefinition         PreProc
 highlight default link cssFontFaceDefinition          PreProc
 highlight default link cssAtRule                      PreProc
+highlight default link cssLayer                       PreProc
 highlight default link cssBrowserPrefix               Comment
 highlight default link cssNumber                      Number
 highlight default link cssHexColor                    Number
@@ -266,6 +264,7 @@ highlight default link cssTagSelector                 Statement
 highlight default link cssPseudoKeyword               Special
 highlight default link cssPagePseudos                 Special
 highlight default link cssValueKeyword                Constant
+highlight default link cssLayerName                   Constant
 highlight default link cssColor                       Constant
 highlight default link cssUnits                       Operator
 highlight default link cssNumberNoise                 Number
@@ -281,6 +280,7 @@ highlight default link cssFontBlock                   Constant
 highlight default link cssFontOperator                Operator
 highlight default link cssValueNoise                  Noise
 highlight default link cssKeyframeComma               Noise
+highlight default link cssLayerComma                  Noise
 highlight default link cssAnimationBlock              Constant
 highlight default link cssPageDefinition              Constant
 highlight default link cssKeyframe                    Constant

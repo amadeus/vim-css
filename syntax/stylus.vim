@@ -14,9 +14,7 @@ endif
 syntax clear
 syntax match  stylusVariable           /\<[_a-zA-Z$]\+[_a-zA-Z0-9-]*\>/ containedin=cssValueBlock,cssTransitionBlock
 
-let b:embedded_rules = 1
 runtime! syntax/css.vim
-unlet b:embedded_rules
 
 setlocal iskeyword+=$
 

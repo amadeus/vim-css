@@ -17,9 +17,7 @@ endif
 "   unlet b:current_syntax
 " endif
 
-let b:embedded_rules = 1
 runtime! syntax/css.vim
-unlet b:embedded_rules
 
 syntax match tsStyledKeyword /\<styled\>/ skipwhite skipempty nextgroup=tsStyledDot,tsStyledParens
 " NOTE: This specific re-definition of tsFuncCall is to overwrite the current one

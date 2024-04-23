@@ -11,9 +11,7 @@ if exists("b:current_syntax") && b:current_syntax == "scss"
   finish
 endif
 
-let b:embedded_rules = 1
 runtime! syntax/css.vim
-unlet b:embedded_rules
 
 syntax match  scssAmpersand containedin=cssDefinitionBlock /&/ nextgroup=@cssSelectors,cssDefinitionBlock skipwhite skipempty
 syntax match  scssComment /\/\/.*/ contains=@Spell containedin=cssDefinitionBlock

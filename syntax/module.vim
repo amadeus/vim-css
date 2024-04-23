@@ -14,9 +14,7 @@ endif
 syntax clear
 syntax match  cssmVariable           /\<[_a-zA-Z$]\+[_a-zA-Z0-9-]*\>/ containedin=cssValueBlock,cssTransitionBlock
 
-let b:embedded_rules = 1
 runtime! syntax/css.vim
-unlet b:embedded_rules
 
 syntax region cssmImport matchgroup=cssmImportKeywords start=/import/ end=/from/ contains=cssmClass skipwhite skipempty nextgroup=cssString
 syntax match cssmNoise /;/
